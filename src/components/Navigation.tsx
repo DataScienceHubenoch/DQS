@@ -4,53 +4,97 @@ import Logo from './Logo';
 import Web3Wallet from './Web3Wallet';
 import MobileMenu from './MobileMenu';
 import NetworkStatus from './NetworkStatus';
+import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const menuItems = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Courses', path: '/courses' },
-    { label: 'Team', path: '/team' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Home', path: '/', icon: Home, description: 'Return to homepage' },
+    { label: 'About', path: '/about', icon: Users, description: 'Learn about our company' },
+    { label: 'Services', path: '/services', icon: Briefcase, description: 'Explore our services' },
+    { label: 'Consulting', path: '/consulting', icon: MessageSquare, description: 'Professional consulting services' },
+    { label: 'Courses', path: '/courses', icon: BookOpen, description: 'Browse our courses' },
+    { label: 'Team', path: '/team', icon: Users, description: 'Meet our team' },
+    { label: 'Blog', path: '/blog', icon: FileText, description: 'Read our latest articles' },
+    { label: 'Contact', path: '/contact', icon: Phone, description: 'Get in touch with us' },
   ];
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
-    <nav className="bg-white shadow-sm">
+    <nav className="sticky top-0 z-50 bg-blue-50/80 backdrop-blur-md border-b border-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
+            <Link to="/" className="flex items-center">
               <Logo />
+              <span className="ml-2 text-blue-900 font-semibold text-lg">Data Quest</span>
             </Link>
-            <div className="hidden md:ml-6 md:flex md:space-x-8">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-900 hover:text-blue-600"
-                >
-                  {item.label}
-                </Link>
-              ))}
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {menuItems.map((item) => (
+              <TooltipProvider key={item.path}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      to={item.path}
+                      className="text-blue-700 hover:text-blue-900 transition-colors"
+                      title={item.label}
+                      aria-label={item.label}
+                    >
+                      <item.icon className="h-5 w-5" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="font-medium">{item.label}</p>
+                    <p className="text-sm text-gray-500">{item.description}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ))}
+            <div className="ml-4">
+              <Web3Wallet />
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <div className="hidden md:block">
-              <NetworkStatus />
-            </div>
-            <div className="hidden md:block">
-              <Web3Wallet />
-            </div>
-            <div className="md:hidden">
-              <MobileMenu />
-            </div>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-blue-700 hover:text-blue-900 hover:bg-blue-100"
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-blue-50/95 backdrop-blur-md border-b border-blue-100">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="flex items-center px-3 py-2 rounded-md text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <item.icon className="h-5 w-5 mr-2" />
+                {item.label}
+              </Link>
+            ))}
+            <div className="px-3 py-2">
+              <Web3Wallet />
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

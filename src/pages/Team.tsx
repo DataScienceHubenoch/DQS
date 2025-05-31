@@ -1,13 +1,22 @@
 import React from 'react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, Linkedin, MessageCircle, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 
 const Team = () => {
+  const handleContactSupport = () => {
+    const phoneNumber = '254707612395';
+    const message = 'Hello! I would like to get in touch with your team.';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleJoinCommunity = () => {
+    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
+  };
+
   const teamMembers = [
     {
       id: 1,
@@ -41,54 +50,75 @@ const Team = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Expert Team</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our diverse team of data scientists, analysts, and AI specialists brings together decades of experience 
-            in transforming data into actionable insights and innovative solutions.
-          </p>
-        </div>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Our Team</h1>
+              <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
+                Meet the experts behind Data Quest Solutions
+              </p>
+            </div>
+          </div>
+        </section>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member) => (
-            <Card key={member.id} className="overflow-hidden">
-              <CardContent className="p-6">
-                <div className="aspect-square mb-4 overflow-hidden rounded-lg">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-                <p className="text-gray-600">{member.bio}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* Team Section */}
+        <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white/90 backdrop-blur-sm border-sky-200">
+                  <CardHeader>
+                    <div className="text-center">
+                      <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-sky-100">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardTitle className="text-xl text-gray-900">{member.name}</CardTitle>
+                      <p className="text-sky-500 font-medium">{member.role}</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700 text-center">{member.bio}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        <div className="text-center mt-16 bg-white rounded-lg p-8 shadow-md">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Work With Our Team?</h2>
-          <p className="text-gray-600 mb-6">
-            Get in touch with our experts to discuss your data science and analytics needs.
-          </p>
-          <Button asChild>
-            <Link to="/contact" className="flex items-center gap-2">
-              Contact Our Team
-              <ChevronRight className="h-4 w-4" />
-            </Link>
-          </Button>
-        </div>
+        <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Join Our Team</h2>
+            <p className="text-xl mb-8 text-gray-700 max-w-2xl mx-auto">
+              We're always looking for talented individuals to join our team
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+                onClick={handleContactSupport}
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Contact Us
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={handleJoinCommunity}
+                className="flex items-center gap-2 text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600"
+              >
+                <Users className="h-5 w-5" />
+                Join Community
+              </Button>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <Footer />
     </div>
   );
 };

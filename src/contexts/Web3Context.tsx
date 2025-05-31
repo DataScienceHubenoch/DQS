@@ -107,7 +107,7 @@ export const Web3Provider = ({ children }: Web3ProviderProps) => {
     }
 
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.BrowserProvider(window.ethereum);
       const balance = await provider.getBalance(address);
       setBalance(ethers.formatEther(balance));
     } catch (error) {

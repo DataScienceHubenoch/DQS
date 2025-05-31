@@ -1,14 +1,23 @@
-
 import React from 'react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { MessageCircle, Users } from 'lucide-react';
 
 const Blog = () => {
+  const handleContactSupport = () => {
+    const phoneNumber = '254700000000';
+    const message = 'Hello, I have a question about Data Quest Solutions.';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleJoinCommunity = () => {
+    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
+  };
+
   const faqs = [
     {
-      question: 'What services does DataViz Analytics offer?',
+      question: 'What services does Data Quest Solutions offer?',
       answer: 'We offer a comprehensive range of services including data collection, data analysis, research writing, graphic design, web design, project management, AI development, training programs, consultation, and report writing. Our services are designed to help businesses and individuals make data-driven decisions and succeed in the digital age.'
     },
     {
@@ -59,13 +68,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Find answers to common questions about our services, courses, and expertise. 
             Can't find what you're looking for? Feel free to contact us!
           </p>
@@ -74,14 +81,14 @@ const Blog = () => {
         {/* FAQ Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {faqs.map((faq, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 h-full">
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 h-full bg-white/90 backdrop-blur-sm border-sky-200">
               <CardHeader>
                 <CardTitle className="text-lg font-bold text-gray-900 leading-tight">
                   {faq.question}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed">
                   {faq.answer}
                 </p>
               </CardContent>
@@ -91,67 +98,71 @@ const Blog = () => {
 
         {/* Additional Resources */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <Card className="text-center">
+          <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
               <div className="text-4xl mb-4">📚</div>
-              <CardTitle>Learning Resources</CardTitle>
+              <CardTitle className="text-gray-900">Learning Resources</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-700 mb-4">
                 Access our comprehensive library of tutorials, guides, and documentation 
                 to support your learning journey.
               </p>
-              <Button variant="outline">Browse Resources</Button>
+              <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600">Browse Resources</Button>
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
               <div className="text-4xl mb-4">💬</div>
-              <CardTitle>Community Support</CardTitle>
+              <CardTitle className="text-gray-900">Community Support</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-700 mb-4">
                 Join our community of learners and professionals to share knowledge, 
                 ask questions, and collaborate on projects.
               </p>
-              <Button variant="outline">Join Community</Button>
+              <Button 
+                variant="outline" 
+                onClick={handleJoinCommunity}
+                className="flex items-center gap-2 text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600"
+              >
+                <Users className="h-5 w-5" />
+                Join Community
+              </Button>
             </CardContent>
           </Card>
 
-          <Card className="text-center">
+          <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
               <div className="text-4xl mb-4">🎯</div>
-              <CardTitle>Expert Consultation</CardTitle>
+              <CardTitle className="text-gray-900">Expert Consultation</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-700 mb-4">
                 Schedule a one-on-one consultation with our experts to get personalized 
                 guidance for your specific needs.
               </p>
-              <Button variant="outline">Book Consultation</Button>
+              <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600">Book Consultation</Button>
             </CardContent>
           </Card>
         </div>
 
         {/* Contact CTA */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white">
-          <h2 className="text-3xl font-bold mb-4">Still Have Questions?</h2>
-          <p className="text-xl mb-6 opacity-90">
-            Our team is here to help! Reach out to us for personalized answers and guidance.
+        <div className="text-center bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-12 rounded-lg">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
+          <p className="text-gray-700 mb-6">
+            Our team is here to help. Get in touch with us for personalized assistance.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary">
-              Contact Support
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
-              Schedule a Call
-            </Button>
-          </div>
+          <Button 
+            className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+            onClick={handleContactSupport}
+          >
+            <MessageCircle className="w-4 h-4 mr-2" />
+            Contact Support
+          </Button>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

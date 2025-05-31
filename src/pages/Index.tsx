@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChevronRight, Loader2, Wallet, LogOut, RefreshCw } from 'lucide-react';
-import { useWeb3 } from '@/contexts/Web3Context';
-import { useToast } from '@/components/ui/use-toast';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { MessageCircle, Users } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const featuredTeamMembers = [
@@ -35,63 +30,15 @@ const featuredTeamMembers = [
 ];
 
 const Index = () => {
-  const { isConnected, connect, disconnect, isConnecting, account } = useWeb3();
-  const { toast } = useToast();
-  const [connectionError, setConnectionError] = useState<string | null>(null);
-
-  const handleConnect = async () => {
-    setConnectionError(null);
-    try {
-      await connect();
-      toast({
-        title: "Success",
-        description: "Wallet connected successfully",
-      });
-    } catch (error) {
-      console.error('Failed to connect wallet:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to connect wallet';
-      setConnectionError(errorMessage);
-      toast({
-        title: "Connection Failed",
-        description: errorMessage,
-        variant: "destructive",
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (!isConnected && !isConnecting) {
-      handleConnect();
-    }
-  }, [isConnected, isConnecting]);
-
-  const handleDisconnect = async () => {
-    try {
-      await disconnect();
-      setConnectionError(null);
-      toast({
-        title: "Success",
-        description: "Wallet disconnected successfully",
-      });
-    } catch (error) {
-      console.error('Failed to disconnect wallet:', error);
-      toast({
-        title: "Error",
-        description: "Failed to disconnect wallet. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 6)}...${address.slice(-4)}`;
-  };
-
   const handleRequestService = (serviceName: string) => {
     const phoneNumber = '254707612395';
     const message = `Hello! I would like to request information about your "${serviceName}" service. Could you please provide more details about the service and pricing?`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+  };
+
+  const handleJoinCommunity = () => {
+    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
   };
 
   const services = [
@@ -111,105 +58,56 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
-      {/* Wallet Status Indicator */}
-      <div className="fixed top-4 right-4 z-50">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                {isConnecting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
-                    <span className="text-sm text-gray-600">Connecting...</span>
-                  </>
-                ) : isConnected ? (
-                  <>
-                    <div className="h-2 w-2 rounded-full bg-green-500" />
-                    <span className="text-sm font-medium text-gray-900">
-                      {account ? formatAddress(account) : 'Connected'}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-6 w-6 p-0 hover:bg-gray-100"
-                      onClick={handleDisconnect}
-                    >
-                      <LogOut className="h-4 w-4 text-gray-500" />
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <div className="h-2 w-2 rounded-full bg-red-500" />
-                    <span className="text-sm text-gray-600">
-                      {connectionError ? 'Connection Failed' : 'Not Connected'}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-6 w-6 p-0 hover:bg-gray-100"
-                      onClick={handleConnect}
-                    >
-                      <RefreshCw className="h-4 w-4 text-gray-500" />
-                    </Button>
-                  </>
-                )}
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>
-                {isConnecting
-                  ? 'Connecting to wallet...'
-                  : isConnected
-                  ? 'Click to disconnect wallet'
-                  : connectionError
-                  ? connectionError
-                  : 'Click to connect wallet'}
-              </p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-blue-100">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Transform Your Data into <span className="text-yellow-300">Actionable Insights</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+              At DataQuest Solutions, we blend expertise with innovation to deliver
+              impactful data solutions
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto">
-              Expert data science services, training, and consulting to help you make data-driven decisions
+            <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
+              Our commitment is to empower individuals and organizations by transforming data into actionable insights for sustainable growth
             </p>
             <div className="flex flex-col items-center space-y-4 mb-8">
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-yellow-300">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/90 transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sky-500">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
-                <span>+254707612395</span>
+                <span className="text-gray-700">+254707612395</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-yellow-300">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/90 transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sky-500">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
-                <span>+254701344230</span>
+                <span className="text-gray-700">+254701344230</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-yellow-300">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/90 transition-colors shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sky-500">
                   <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
-                <span>dataquestsolutions2@gmail.com</span>
+                <span className="text-gray-700">dataquestsolutions2@gmail.com</span>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary">
+              <Button 
+                size="lg" 
+                variant="secondary"
+                onClick={() => handleRequestService('General Inquiry')}
+                className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+              >
+                <MessageCircle className="h-5 w-5" />
                 Get Started
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
-                Learn More
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600"
+                asChild
+              >
+                <Link to="/about">Learn More</Link>
               </Button>
             </div>
           </div>
@@ -217,26 +115,26 @@ const Index = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Comprehensive Data Science Solutions</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               End-to-end services designed to accelerate your data science journey and business success
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 text-center">
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
                 <CardHeader>
                   <div className="text-4xl mb-4">{service.icon}</div>
-                  <CardTitle>{service.name}</CardTitle>
+                  <CardTitle className="text-gray-900">{service.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
+                  <p className="text-gray-700 mb-4">{service.description}</p>
                   <Button 
-                    className="w-full"
+                    className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
                     onClick={() => handleRequestService(service.name)}
                   >
                     Request Service
@@ -249,7 +147,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Unlock Your Data's Potential?</h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
@@ -263,31 +161,39 @@ const Index = () => {
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600" asChild>
               <Link to="/about">Discover Our Mission</Link>
             </Button>
+            <Button 
+              variant="outline" 
+              onClick={handleJoinCommunity}
+              className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
+            >
+              <Users className="h-5 w-5" />
+              Join Community
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <div className="text-center">
+      <div className="text-center bg-gradient-to-b from-blue-50 via-white to-blue-50 py-20">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
         <p className="text-xl text-gray-600 mb-8">
           Ready to start your data-driven journey? Contact us today.
         </p>
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-blue-600">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
             <span>+254707612395</span>
           </div>
-          <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-blue-600">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
             <span>+254701344230</span>
           </div>
-          <div className="flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-blue-600">
               <rect width="20" height="16" x="2" y="4" rx="2"></rect>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
@@ -295,8 +201,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

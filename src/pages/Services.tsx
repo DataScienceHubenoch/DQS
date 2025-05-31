@@ -1,6 +1,4 @@
 import React from 'react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import PaymentButton from '@/components/PaymentButton';
@@ -17,6 +15,7 @@ import {
   Lightbulb,
   Clock,
   Check,
+  MessageCircle,
 } from 'lucide-react';
 import {
   Tooltip,
@@ -24,6 +23,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const handleRequestService = (serviceTitle: string) => {
@@ -98,310 +98,152 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Comprehensive solutions to help your business thrive in the data-driven world. 
-            From data collection to AI development, we provide end-to-end services tailored to your needs.
-          </p>
-        </div>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                Our Services
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
+                Comprehensive data science solutions tailored to your needs
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-              <CardHeader className="text-center pb-4 flex-none">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger className="flex justify-center">
-                      <service.icon 
-                        className="w-12 h-12 text-blue-600 mb-4 transition-transform duration-300 hover:scale-110 hover:text-blue-700" 
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{service.tooltip}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <CardTitle className="text-xl font-bold text-gray-900">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-gray-600 mb-6">{service.description}</p>
-                <Button 
-                  className="w-full mt-auto"
-                  onClick={() => handleRequestService(service.title)}
-                >
-                  Request Service
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                  <CardHeader>
+                    <div className="text-4xl mb-4">
+                      <service.icon className="w-12 h-12 text-sky-500 mx-auto" />
+                    </div>
+                    <CardTitle className="text-gray-900">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700 mb-6">{service.description}</p>
+                    <Button 
+                      className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+                      onClick={() => handleRequestService(service.title)}
+                    >
+                      Request Service
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Process</h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* Data Analysis */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">Data Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Transform raw data into actionable insights</p>
+                </CardContent>
+              </Card>
+
+              {/* Machine Learning */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">Machine Learning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Build and deploy ML models for your business</p>
+                </CardContent>
+              </Card>
+
+              {/* AI Solutions */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">AI Solutions</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Custom AI solutions for your business needs</p>
+                </CardContent>
+              </Card>
+
+              {/* Data Engineering */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">Data Engineering</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Build robust data pipelines and infrastructure</p>
+                </CardContent>
+              </Card>
+
+              {/* Business Intelligence */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">Business Intelligence</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Create powerful dashboards and reports</p>
+                </CardContent>
+              </Card>
+
+              {/* Data Strategy */}
+              <Card className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-4xl mb-4">
+                    <Clock className="w-8 h-8 text-sky-500" />
+                  </div>
+                  <CardTitle className="text-gray-900">Data Strategy</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700">Develop a comprehensive data strategy</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-6 opacity-90">
-            Let's discuss how our services can help you achieve your goals and drive success.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <PaymentButton
-              to="0x26862D2d4Da5db0bdf56Af59093cc6B83bC4a56C"
-              amount="0.5"
-              label="Pay for Consultation"
-              className="bg-white text-blue-600 hover:bg-gray-100"
-              onSuccess={(tx) => {
-                console.log('Consultation payment successful:', tx);
-              }}
-              onError={(error) => {
-                console.error('Consultation payment failed:', error);
-              }}
-            />
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-white border-white hover:bg-white hover:text-blue-600"
-              onClick={() => handleRequestService('Consultation')}
-            >
-              Schedule Consultation
-            </Button>
+        <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Get Started?</h2>
+            <p className="text-xl mb-8 text-gray-700 max-w-2xl mx-auto">
+              Let's work together to transform your data into actionable insights and drive your success forward.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500" asChild>
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600" asChild>
+                <Link to="/about">Learn More</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-
-        {/* Additional Services */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-4">Additional Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Data Analysis */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Data Analysis</CardTitle>
-                <CardDescription>
-                  Transform raw data into actionable insights
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 2-4 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Exploratory Data Analysis
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Statistical Analysis
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Data Visualization
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Insight Generation
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Machine Learning */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Machine Learning</CardTitle>
-                <CardDescription>
-                  Build and deploy ML models for your business
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 4-8 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Model Development
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Training & Optimization
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Deployment
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Performance Monitoring
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-
-            {/* AI Solutions */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>AI Solutions</CardTitle>
-                <CardDescription>
-                  Custom AI solutions for your business needs
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 8-12 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Computer Vision
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Natural Language Processing
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Recommendation Systems
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    AI Integration
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Data Engineering */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Data Engineering</CardTitle>
-                <CardDescription>
-                  Build robust data pipelines and infrastructure
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 6-10 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    ETL Pipeline Development
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Data Warehousing
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Big Data Solutions
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Data Quality Management
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Business Intelligence */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Business Intelligence</CardTitle>
-                <CardDescription>
-                  Create powerful dashboards and reports
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 3-6 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Dashboard Development
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    KPI Tracking
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Report Automation
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Data Visualization
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-
-            {/* Data Strategy */}
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Data Strategy</CardTitle>
-                <CardDescription>
-                  Develop a comprehensive data strategy
-                </CardDescription>
-                <div className="flex items-center text-sm text-muted-foreground mt-2">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>Duration: 4-6 weeks per project</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Strategy Development
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Data Governance
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Technology Assessment
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-4 h-4 mr-2 text-green-500" />
-                    Implementation Planning
-                  </li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">Get Started</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
+        </section>
       </div>
-
-      <Footer />
     </div>
   );
 };
