@@ -216,28 +216,28 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Courses Grid */}
+        {/* Courses Grid */}
       <section className="py-12 bg-gradient-to-b from-sky-50 via-white to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCourses.map((course, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white/90 backdrop-blur-sm border-sky-200">
-                <CardHeader>
+              <CardHeader>
                   <div className="flex items-center gap-4">
                     <course.icon className="w-8 h-8 text-sky-500" />
                     <div>
                       <CardTitle className="text-xl text-gray-900">{course.title}</CardTitle>
                       <p className="text-sm text-gray-500 capitalize">{course.level}</p>
                     </div>
-                  </div>
-                </CardHeader>
+                </div>
+              </CardHeader>
                 <CardContent>
                   <p className="text-gray-700 mb-4">{course.description}</p>
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500" onClick={() => setSelectedCourse(course)}>
                         Learn More
-                      </Button>
+                  </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[500px]">
                       <DialogHeader>
@@ -260,21 +260,21 @@ const Courses = () => {
                               >
                                 <MessageCircle className="w-4 h-4 mr-2" />
                                 Enroll via WhatsApp
-                              </Button>
-                            </div>
+                  </Button>
+                </div>
                           </div>
                         </DialogDescription>
                       </DialogHeader>
                     </DialogContent>
                   </Dialog>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+        {/* CTA Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Start Learning?</h2>

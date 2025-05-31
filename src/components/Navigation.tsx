@@ -29,7 +29,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <Logo />
-              <span className="ml-2 text-blue-900 font-semibold text-lg">Data Quest</span>
+              <span className="ml-2 text-blue-900 font-semibold text-lg">DATAQUEST SOLUTIONS</span>
             </Link>
           </div>
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Link } from 'react-router-dom';
 
 const About = () => {
@@ -23,26 +22,6 @@ const About = () => {
     }
   ];
 
-  const team = [
-    {
-      image: '/images/team/team1.jpg',
-      name: 'John Doe',
-      role: 'CEO',
-      bio: 'John is the CEO of Data Quest Solutions. He has been with the company since its inception and has been instrumental in its growth and success.'
-    },
-    {
-      image: '/images/team/team2.jpg',
-      name: 'Jane Smith',
-      role: 'CTO',
-      bio: 'Jane is the CTO of Data Quest Solutions. She has been with the company since its inception and has been instrumental in its growth and success.'
-    },
-    {
-      image: '/images/team/team3.jpg',
-      name: 'Bob Johnson',
-      role: 'CFO',
-      bio: 'Bob is the CFO of Data Quest Solutions. He has been with the company since its inception and has been instrumental in its growth and success.'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -89,6 +68,35 @@ const About = () => {
           </div>
         </section>
 
+        {/* Vision Section */}
+        <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="relative order-2 md:order-1">
+                 <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                  <img 
+                    src="/images/vision.jpg" 
+                    alt="Our Vision" 
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </div>
+              <div className="order-1 md:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  Our vision is to be a trusted partner in transforming the
+                  way businesses and individuals leverage data, technology,
+                  and knowledge. We strive to lead the way in innovation,
+                  providing strategic insights and expertise that fuel
+                  progress, drive operational excellence, and unlock new
+                  opportunities for success in an ever-evolving digital
+                  landscape.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Values Section */}
         <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,30 +110,6 @@ const About = () => {
               </CardHeader>
               <CardContent>
                     <p className="text-gray-700">{value.description}</p>
-              </CardContent>
-            </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Leadership Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {team.map((member, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200">
-              <CardHeader>
-                    <Avatar className="w-24 h-24 mx-auto mb-4">
-                      <AvatarImage src={member.image} alt={member.name} />
-                      <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                    </Avatar>
-                    <CardTitle className="text-gray-900">{member.name}</CardTitle>
-                    <p className="text-sky-600">{member.role}</p>
-              </CardHeader>
-              <CardContent>
-                    <p className="text-gray-700">{member.bio}</p>
               </CardContent>
             </Card>
               ))}

@@ -7,7 +7,7 @@ import { MessageCircle, Users } from 'lucide-react';
 const Footer = () => {
   const handleContactSupport = () => {
     const phoneNumber = '254707612395';
-    const message = 'Hello! I would like to request information about your services.';
+    const message = 'Hello! I would like to get in touch with your team.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -102,6 +102,19 @@ const Footer = () => {
                   Cookie Policy
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Get in Touch */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-sky-100">Get in Touch</h3>
+            <p className="text-sky-200 mb-4">
+              Ready to start your data-driven journey? Contact us today.
+            </p>
+            <ul className="space-y-2 text-sky-200">
+              <li>+254707612395</li>
+              <li>+254701344230</li>
+              <li>dataquestsolutions2@gmail.com</li>
             </ul>
           </div>
         </div>
