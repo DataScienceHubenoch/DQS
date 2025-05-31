@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle } from 'lucide-react';
+import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle, Clock, Check } from 'lucide-react';
 import {
   Dialog,
   DialogContent,

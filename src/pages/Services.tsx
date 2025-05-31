@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import PaymentButton from '@/components/PaymentButton';
 import {
@@ -15,6 +15,8 @@ import {
   Cpu,
   GraduationCap,
   Lightbulb,
+  Clock,
+  Check,
 } from 'lucide-react';
 import {
   Tooltip,
@@ -167,6 +169,234 @@ const Services = () => {
             >
               Schedule Consultation
             </Button>
+          </div>
+        </div>
+
+        {/* Additional Services */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold mb-4">Additional Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Data Analysis */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Data Analysis</CardTitle>
+                <CardDescription>
+                  Transform raw data into actionable insights
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 2-4 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Exploratory Data Analysis
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Statistical Analysis
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Data Visualization
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Insight Generation
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
+
+            {/* Machine Learning */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Machine Learning</CardTitle>
+                <CardDescription>
+                  Build and deploy ML models for your business
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 4-8 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Model Development
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Training & Optimization
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Deployment
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Performance Monitoring
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
+
+            {/* AI Solutions */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>AI Solutions</CardTitle>
+                <CardDescription>
+                  Custom AI solutions for your business needs
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 8-12 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Computer Vision
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Natural Language Processing
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Recommendation Systems
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    AI Integration
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
+
+            {/* Data Engineering */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Data Engineering</CardTitle>
+                <CardDescription>
+                  Build robust data pipelines and infrastructure
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 6-10 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    ETL Pipeline Development
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Data Warehousing
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Big Data Solutions
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Data Quality Management
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
+
+            {/* Business Intelligence */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Business Intelligence</CardTitle>
+                <CardDescription>
+                  Create powerful dashboards and reports
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 3-6 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Dashboard Development
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    KPI Tracking
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Report Automation
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Data Visualization
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
+
+            {/* Data Strategy */}
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Data Strategy</CardTitle>
+                <CardDescription>
+                  Develop a comprehensive data strategy
+                </CardDescription>
+                <div className="flex items-center text-sm text-muted-foreground mt-2">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>Duration: 4-6 weeks per project</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Strategy Development
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Data Governance
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Technology Assessment
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 mr-2 text-green-500" />
+                    Implementation Planning
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full">Get Started</Button>
+              </CardFooter>
+            </Card>
           </div>
         </div>
       </div>
