@@ -9,6 +9,9 @@ import Courses from '@/pages/Courses';
 import Team from '@/pages/Team';
 import Blog from '@/pages/Blog';
 import NotFound from '@/pages/NotFound';
+import CookiePolicy from '@/pages/CookiePolicy';
+import Terms from '@/pages/Terms';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import { Web3Provider } from '@/contexts/Web3Context';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -25,6 +28,9 @@ function App() {
             <Route path="/courses" element={<Courses />} />
             <Route path="/team" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />
