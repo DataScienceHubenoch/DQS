@@ -12,6 +12,9 @@ import Team from '@/pages/Team';
 import Blog from '@/pages/Blog';
 import Contact from '@/pages/Contact';
 import Consulting from '@/pages/Consulting';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
+import Terms from '@/pages/Terms';
+import CookiePolicy from '@/pages/CookiePolicy';
 import WhatsAppButton from './components/WhatsAppButton';
 import { Web3Provider } from '@/contexts/Web3Context';
 import { Toaster } from '@/components/ui/toaster';
@@ -37,6 +40,9 @@ const App = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/consulting" element={<Consulting />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/cookie-policy" element={<CookiePolicy />} />
               </Routes>
             </main>
             <WhatsAppButton />
