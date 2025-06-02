@@ -648,17 +648,17 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Courses Grid */}
+        {/* Courses Grid */}
       <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredCourses.map((course, index) => (
               <Card 
                 key={index} 
                 className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200 cursor-pointer"
                 onClick={() => setSelectedCourse(course)}
               >
-                <CardHeader>
+              <CardHeader>
                   <div className="text-4xl mb-4">
                     <course.icon className="w-12 h-12 text-sky-500 mx-auto" />
                   </div>
@@ -669,13 +669,13 @@ const Courses = () => {
                       course.level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
                       'bg-red-100 text-red-800'
                     }`}>
-                      {course.level}
+                    {course.level}
                     </span>
                     <span className="text-gray-500 text-sm">
-                      {course.duration}
+                    {course.duration}
                     </span>
-                  </div>
-                </CardHeader>
+                </div>
+              </CardHeader>
                 <CardContent>
                   <p className="text-gray-700 mb-6">{course.description}</p>
                   <Button 
@@ -690,14 +690,14 @@ const Courses = () => {
                   >
                     Enroll Now
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+        {/* CTA Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Start Learning?</h2>

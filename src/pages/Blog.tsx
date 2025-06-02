@@ -1,68 +1,56 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Users } from 'lucide-react';
+import { MessageCircle, Share2, Heart, MessageSquare, ExternalLink } from 'lucide-react';
 
 const Blog = () => {
   const handleContactSupport = () => {
-    const phoneNumber = '254700000000';
+    const phoneNumber = '254707612395';
     const message = 'Hello, I have a question about Data Quest Solutions.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const handleJoinCommunity = () => {
-    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
-  };
-
-  const faqs = [
+  const socialPosts = [
     {
-      question: 'What services does Data Quest Solutions offer?',
-      answer: 'We offer a comprehensive range of services including data collection, data analysis, research writing, graphic design, web design, project management, AI development, training programs, consultation, and report writing. Our services are designed to help businesses and individuals make data-driven decisions and succeed in the digital age.'
+      platform: 'LinkedIn',
+      author: 'Data Quest Solutions',
+      date: '2024-03-15',
+      content: 'Your premier gateway to the field of programming, data science and health research MathematicsStatistics. 100% online sessions with flexible timetables which won\'t affect your regular schedule! Get certified and start your career with confidence! #DataScience #Programming #HealthResearch',
+      likes: 45,
+      comments: 12,
+      shares: 8,
+      link: 'https://linkedin.com/company/dataquestsolutions'
     },
     {
-      question: 'What courses do you provide?',
-      answer: 'We offer 18 different courses covering various aspects of data science and analytics, including Data Analysis with SPSS, R, Python, and Stata, Machine Learning, Deep Learning/AI, Spatial Analysis, Time Series Forecasting, Survival Analysis, Data Visualization with Power BI and Tableau, Qualitative Analysis, Web Development, Graphic Design, Database Management with SQL, and specialized courses like Infectious Disease Modelling.'
+      platform: 'Facebook',
+      author: 'Data Quest Solutions',
+      date: '2024-03-14',
+      content: 'Welcome to DataQuest Solutions – your hub for mastering data science and analytics! We empower learners and professionals with skills in Python, R, Power BI, and more. Let\'s build Africa\'s data future—together! #DataScience #Analytics #Training',
+      likes: 89,
+      comments: 23,
+      shares: 15,
+      link: 'https://web.facebook.com/share/g/1ELLjtsTMA/'
     },
     {
-      question: 'Who is your target audience?',
-      answer: 'Our services and courses are designed for businesses, organizations, researchers, students, and professionals looking to enhance their data science and analytics skills. Whether you\'re a beginner looking to start your journey in data science or an experienced professional seeking to expand your expertise, we have solutions tailored to your needs.'
+      platform: 'Twitter',
+      author: '@Dataquest123',
+      date: '2024-03-13',
+      content: 'Welcome to dataquest solutions your premier gateway to the field of programming, data science and health research. Registered as a training and service delivery firm under The Business Registry Service, Kenya. #DataScience #Programming #Training',
+      likes: 156,
+      comments: 34,
+      shares: 28,
+      link: 'https://x.com/Dataquest123'
     },
     {
-      question: 'How experienced is your team?',
-      answer: 'Our team consists of highly qualified professionals including biostatisticians, data analysts, data scientists, and AI enthusiasts with extensive experience in their respective fields. Each team member brings unique expertise and a passion for transforming data into actionable insights.'
-    },
-    {
-      question: 'Do you offer custom training programs?',
-      answer: 'Yes, we provide custom training programs tailored to meet the specific needs of organizations and teams. Our training programs are designed to address particular skill gaps and requirements, ensuring measurable improvements in performance and productivity.'
-    },
-    {
-      question: 'What makes your data analysis services unique?',
-      answer: 'Our data analysis services combine advanced analytical techniques with industry expertise to deliver actionable insights. We use cutting-edge tools and methodologies to interpret complex datasets, uncover trends, and provide recommendations that drive informed business decisions and strategic growth.'
-    },
-    {
-      question: 'How do you ensure data quality and security?',
-      answer: 'We employ industry-leading methods and tools for data collection and analysis, ensuring accuracy, reliability, and security. Our team follows best practices for data handling, storage, and processing to maintain the highest standards of data integrity and confidentiality.'
-    },
-    {
-      question: 'Can you help with AI development projects?',
-      answer: 'Absolutely! Our AI development services include building intelligent systems, machine learning models, natural language processing solutions, and custom AI applications. We specialize in creating solutions that optimize processes, enhance decision-making, and provide valuable business insights.'
-    },
-    {
-      question: 'What is the duration of your courses?',
-      answer: 'Course durations vary depending on the complexity and depth of the subject matter. Our courses range from 6 weeks for introductory topics to 14 weeks for advanced subjects like Deep Learning/AI. Each course is designed to provide comprehensive coverage of the topic with hands-on practical experience.'
-    },
-    {
-      question: 'Do you provide ongoing support after project completion?',
-      answer: 'Yes, we believe in building long-term partnerships with our clients. We provide ongoing consultation and support to ensure the successful implementation and maintenance of our solutions. Our team is always available to address questions and provide guidance as your needs evolve.'
-    },
-    {
-      question: 'How can I get started with your services?',
-      answer: 'Getting started is easy! You can contact us through our website, email, phone, or WhatsApp. We offer free initial consultations to understand your needs and recommend the best solutions. Our team will work with you to develop a customized approach that meets your specific requirements and goals.'
-    },
-    {
-      question: 'What industries do you serve?',
-      answer: 'We serve clients across various industries including healthcare, finance, education, technology, government, research institutions, and private businesses. Our diverse expertise allows us to adapt our services and solutions to meet the unique challenges and requirements of different sectors.'
+      platform: 'Instagram',
+      author: '@dataquestsolutions',
+      date: '2024-03-12',
+      content: 'In the process of forming coalitions with Masinde Muliro University of Science and Technology for short courses training. Skilled tutors with Bachelors and Masters of Science. Gigs assured after course completion! #DataScience #CareerGrowth #TechTraining',
+      likes: 234,
+      comments: 45,
+      shares: 32,
+      link: 'https://www.instagram.com/dataquestsolutions/'
     }
   ];
 
@@ -71,96 +59,168 @@ const Blog = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Latest Updates</h1>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Find answers to common questions about our services, courses, and expertise. 
-            Can't find what you're looking for? Feel free to contact us!
+            Stay connected with our latest news, course updates, and insights from our social media platforms.
           </p>
         </div>
 
-        {/* FAQ Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {faqs.map((faq, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 h-full bg-white/90 backdrop-blur-sm border-sky-200">
+        {/* Social Media Posts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {socialPosts.map((post, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white/90 backdrop-blur-sm border-sky-200">
               <CardHeader>
-                <CardTitle className="text-lg font-bold text-gray-900 leading-tight">
-                  {faq.question}
-                </CardTitle>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                      post.platform === 'LinkedIn' ? 'bg-blue-100' :
+                      post.platform === 'Twitter' ? 'bg-sky-100' :
+                      post.platform === 'Facebook' ? 'bg-blue-100' :
+                      'bg-pink-100'
+                    }`}>
+                      {post.platform === 'LinkedIn' ? 'in' :
+                       post.platform === 'Twitter' ? '𝕏' :
+                       post.platform === 'Facebook' ? 'f' :
+                       '📸'}
+                    </div>
+                    <div>
+                      <CardTitle className="text-gray-900">{post.author}</CardTitle>
+                      <CardDescription>{new Date(post.date).toLocaleDateString()}</CardDescription>
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="sm" asChild>
+                    <a href={post.link} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+                <p className="text-gray-700 whitespace-pre-line">{post.content}</p>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed">
-                  {faq.answer}
-                </p>
+              <CardContent className="pt-4">
+                <div className="flex items-center gap-6 text-gray-500">
+                  <div className="flex items-center gap-2">
+                    <Heart className="h-5 w-5" />
+                    <span>{post.likes}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5" />
+                    <span>{post.comments}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Share2 className="h-5 w-5" />
+                    <span>{post.shares}</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Additional Resources */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {/* Social Media Links */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-16">
           <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
-              <div className="text-4xl mb-4">📚</div>
-              <CardTitle className="text-gray-900">Learning Resources</CardTitle>
+              <div className="text-4xl mb-4">📱</div>
+              <CardTitle className="text-gray-900">Follow Us</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-4">
-                Access our comprehensive library of tutorials, guides, and documentation 
-                to support your learning journey.
+                Stay updated with our latest news and insights across all social media platforms.
               </p>
-              <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600">Browse Resources</Button>
+              <div className="flex justify-center gap-4">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="https://linkedin.com/company/dataquestsolutions" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <a href="https://x.com/Dataquest123" target="_blank" rel="noopener noreferrer">Twitter</a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
           <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
-              <div className="text-4xl mb-4">💬</div>
-              <CardTitle className="text-gray-900">Community Support</CardTitle>
+              <div className="text-4xl mb-4">📸</div>
+              <CardTitle className="text-gray-900">Instagram</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-4">
-                Join our community of learners and professionals to share knowledge, 
-                ask questions, and collaborate on projects.
+                Follow us on Instagram for behind-the-scenes content and visual updates.
               </p>
-              <Button 
-                variant="outline" 
-                onClick={handleJoinCommunity}
-                className="flex items-center gap-2 text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600"
-              >
-                <Users className="h-5 w-5" />
-                Join Community
+              <Button variant="outline" size="sm" asChild>
+                <a href="https://www.instagram.com/dataquestsolutions/" target="_blank" rel="noopener noreferrer">@dataquestsolutions</a>
               </Button>
             </CardContent>
           </Card>
 
           <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
             <CardHeader>
-              <div className="text-4xl mb-4">🎯</div>
-              <CardTitle className="text-gray-900">Expert Consultation</CardTitle>
+              <div className="text-4xl mb-4">📘</div>
+              <CardTitle className="text-gray-900">Facebook</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-4">
-                Schedule a one-on-one consultation with our experts to get personalized 
-                guidance for your specific needs.
+                Join our Facebook community for discussions and updates.
               </p>
-              <Button variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600">Book Consultation</Button>
+              <Button variant="outline" size="sm" asChild>
+                <a href="https://web.facebook.com/share/g/1ELLjtsTMA/" target="_blank" rel="noopener noreferrer">Data Quest Solutions</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
+            <CardHeader>
+              <div className="text-4xl mb-4">🎥</div>
+              <CardTitle className="text-gray-900">YouTube</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-700 mb-4">
+                Subscribe to our YouTube channel for tutorials and insights.
+              </p>
+              <Button variant="outline" size="sm" asChild>
+                <a href="https://www.youtube.com/@dataquestsolutions-z9k" target="_blank" rel="noopener noreferrer">DataQuest Solutions</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="text-center bg-white/90 backdrop-blur-sm border-sky-200">
+            <CardHeader>
+              <div className="text-4xl mb-4">🎵</div>
+              <CardTitle className="text-gray-900">TikTok</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-700 mb-4">
+                Follow us on TikTok for short-form educational content.
+              </p>
+              <Button variant="outline" size="sm" asChild>
+                <a href="https://www.tiktok.com/@dataquestsolution" target="_blank" rel="noopener noreferrer">@dataquestsolution</a>
+              </Button>
             </CardContent>
           </Card>
         </div>
 
         {/* Contact CTA */}
         <div className="text-center bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-12 rounded-lg">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Want to Stay Updated?</h2>
           <p className="text-gray-700 mb-6">
-            Our team is here to help. Get in touch with us for personalized assistance.
+            Follow us on social media for the latest updates, course announcements, and industry insights.
           </p>
-          <Button 
-            className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
-            onClick={handleContactSupport}
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            Contact Support
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button 
+              className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+              onClick={handleContactSupport}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Contact Us
+            </Button>
+            <Button 
+              variant="outline"
+              className="border-sky-500 text-sky-500 hover:bg-sky-50"
+              asChild
+            >
+              <a href="mailto:dataquestsolutions2@gmail.com">Email Us</a>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
