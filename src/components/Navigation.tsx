@@ -4,20 +4,60 @@ import Logo from './Logo';
 import Web3Wallet from './Web3Wallet';
 import MobileMenu from './MobileMenu';
 import NetworkStatus from './NetworkStatus';
-import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu } from 'lucide-react';
+import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const menuItems = [
-    { label: 'Home', path: '/', icon: Home, description: 'Return to homepage' },
-    { label: 'About', path: '/about', icon: Users, description: 'Learn about our company' },
-    { label: 'Services', path: '/services', icon: Briefcase, description: 'Explore our services' },
-    { label: 'Consulting', path: '/consulting', icon: MessageSquare, description: 'Professional consulting services' },
-    { label: 'Courses', path: '/courses', icon: BookOpen, description: 'Browse our courses' },
-    { label: 'Team', path: '/team', icon: Users, description: 'Meet our team' },
-    { label: 'Blog', path: '/blog', icon: FileText, description: 'Read our latest articles' },
-    { label: 'Contact', path: '/contact', icon: Phone, description: 'Get in touch with us' },
+    {
+      path: '/',
+      icon: Home,
+      label: 'Home',
+      description: 'Welcome to DataQuest Solutions'
+    },
+    {
+      path: '/about',
+      icon: Users,
+      label: 'About',
+      description: 'Learn about our mission and team'
+    },
+    {
+      path: '/services',
+      icon: Settings,
+      label: 'Services',
+      description: 'Explore our data solutions'
+    },
+    {
+      path: '/consulting',
+      icon: Lightbulb,
+      label: 'Consulting',
+      description: 'Expert data strategy guidance'
+    },
+    {
+      path: '/analytics',
+      icon: BarChart,
+      label: 'Analytics',
+      description: 'View data insights and metrics'
+    },
+    {
+      path: '/courses',
+      icon: BookOpen,
+      label: 'Courses',
+      description: 'Explore our training programs'
+    },
+    {
+      path: '/blog',
+      icon: FileText,
+      label: 'Blog',
+      description: 'Latest insights and updates'
+    },
+    {
+      path: '/contact',
+      icon: Mail,
+      label: 'Contact',
+      description: 'Get in touch with our team'
+    }
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);

@@ -18,6 +18,7 @@ import CookiePolicy from '@/pages/CookiePolicy';
 import WhatsAppButton from './components/WhatsAppButton';
 import { Web3Provider } from '@/contexts/Web3Context';
 import { Toaster } from '@/components/ui/toaster';
+import Analytics from '@/pages/Analytics';
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
+                <Route path="/analytics" element={<Analytics />} />
               </Routes>
             </main>
             <WhatsAppButton />
