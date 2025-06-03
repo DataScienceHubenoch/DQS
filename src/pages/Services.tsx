@@ -24,7 +24,9 @@ import {
   BarChart3,
   Target,
   Settings,
-  Layers
+  Layers,
+  Search,
+  MousePointer
 } from 'lucide-react';
 import {
   Tooltip,
@@ -390,12 +392,46 @@ const Services = () => {
         <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Our Services
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Our Services</h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
-                Comprehensive data science solutions tailored to your needs
+                Comprehensive data analysis and research solutions tailored to your needs
               </p>
+              {/* Tutorial Guide */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto mt-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <MessageCircle className="h-6 w-6 text-sky-500" />
+                  How to Get Started
+                </h2>
+                <div className="space-y-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-sky-100 p-2 rounded-full">
+                      <Search className="h-5 w-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">Explore Services</h3>
+                      <p className="text-gray-600">Browse through our range of data analysis and research services to find what you need</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-sky-100 p-2 rounded-full">
+                      <MousePointer className="h-5 w-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">View Details</h3>
+                      <p className="text-gray-600">Click on any service card to learn more about our offerings and expertise</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="bg-sky-100 p-2 rounded-full">
+                      <ArrowRight className="h-5 w-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">Contact Us</h3>
+                      <p className="text-gray-600">Reach out via WhatsApp or email to discuss your specific requirements and get started</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Target, Eye } from 'lucide-react';
 
 const About = () => {
   const values = [
@@ -40,57 +41,30 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
-        <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  At DataQuest Solutions, we are dedicated to transforming the way organizations leverage their data. 
-                  Our mission is to provide cutting-edge data science solutions that drive innovation, efficiency, and growth.
-                </p>
-                <p className="text-lg text-gray-700">
-                  We believe in making data science accessible and actionable, helping our clients make informed decisions 
-                  that lead to sustainable success in the digital age.
-                </p>
-              </div>
-              <div className="relative">
-                <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                  <img 
-                    src="/images/mission.jpg" 
-                    alt="Our Mission" 
-                    className="object-cover w-full h-full"
-                  />
-          </div>
-        </div>
-          </div>
-          </div>
-        </section>
-
-        {/* Vision Section */}
+        {/* Mission & Vision Section */}
         <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="relative order-2 md:order-1">
-                 <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
-                  <img 
-                    src="/images/vision.jpg" 
-                    alt="Our Vision" 
-                    className="object-cover w-full h-full"
-                  />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-sky-100">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-sky-100 p-3 rounded-xl">
+                    <Target className="h-8 w-8 text-sky-500" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
                 </div>
+                <p className="text-gray-600 text-lg">
+                  To empower individuals and organizations with data-driven skills and knowledge, enabling them to make informed decisions and drive positive change in their communities.
+                </p>
               </div>
-              <div className="order-1 md:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Our vision is to be a trusted partner in transforming the
-                  way businesses and individuals leverage data, technology,
-                  and knowledge. We strive to lead the way in innovation,
-                  providing strategic insights and expertise that fuel
-                  progress, drive operational excellence, and unlock new
-                  opportunities for success in an ever-evolving digital
-                  landscape.
+              <div className="bg-white rounded-2xl shadow-xl p-8 border border-sky-100">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="bg-sky-100 p-3 rounded-xl">
+                    <Eye className="h-8 w-8 text-sky-500" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900">Our Vision</h2>
+                </div>
+                <p className="text-gray-600 text-lg">
+                  To be the leading provider of data analysis and research training in East Africa, fostering a community of skilled professionals who drive innovation and development.
                 </p>
               </div>
             </div>

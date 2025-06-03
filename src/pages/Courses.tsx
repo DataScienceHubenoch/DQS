@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle, Clock, Check, Users, BookOpen, Target, ArrowRight, BarChart, Code, Layers, Brain, Microscope, Calculator, Calendar, Timer } from 'lucide-react';
+import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle, Clock, Check, Users, BookOpen, Target, ArrowRight, BarChart, Code, Layers, Brain, Microscope, Calculator, Timer, Star, StarHalf, Calendar, MousePointer } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -37,6 +37,8 @@ const Courses = () => {
       description: 'Master advanced Excel functions, data analysis tools, and automation techniques for efficient data management.',
       icon: BarChart,
       duration: '6 weeks',
+      price: 5000,
+      rating: 4.8,
       prerequisites: ['Basic Excel knowledge', 'Understanding of data analysis concepts'],
       topics: [
         'Advanced formulas and functions',
@@ -64,6 +66,8 @@ const Courses = () => {
       description: 'Learn data manipulation, analysis, and visualization using Python libraries like Pandas, NumPy, and Matplotlib.',
       icon: Code,
       duration: '8 weeks',
+      price: 6000,
+      rating: 4.9,
       prerequisites: ['Basic Python programming', 'Understanding of data structures'],
       topics: [
         'Python fundamentals for data analysis',
@@ -91,6 +95,8 @@ const Courses = () => {
       description: 'Comprehensive course on statistical computing and data analysis using R programming language.',
       icon: Database,
       duration: '8 weeks',
+      price: 6000,
+      rating: 4.7,
       prerequisites: ['Basic statistics knowledge', 'Understanding of data analysis concepts'],
       topics: [
         'R programming fundamentals',
@@ -118,6 +124,8 @@ const Courses = () => {
       description: 'Learn to design and implement mobile data collection forms using CommCare platform.',
       icon: FileText,
       duration: '4 weeks',
+      price: 4000,
+      rating: 4.5,
       prerequisites: ['Basic computer skills', 'Understanding of data collection concepts'],
       topics: [
         'CommCare platform overview',
@@ -145,6 +153,8 @@ const Courses = () => {
       description: 'Master Open Data Kit (ODK) for creating and managing mobile data collection forms.',
       icon: FileText,
       duration: '4 weeks',
+      price: 4000,
+      rating: 4.6,
       prerequisites: ['Basic computer skills', 'Understanding of data collection concepts'],
       topics: [
         'ODK platform overview',
@@ -172,6 +182,8 @@ const Courses = () => {
       description: 'Learn to use KoBo Toolbox for field data collection and management.',
       icon: FileText,
       duration: '4 weeks',
+      price: 4000,
+      rating: 4.4,
       prerequisites: ['Basic computer skills', 'Understanding of data collection concepts'],
       topics: [
         'KoBo Toolbox platform overview',
@@ -199,6 +211,8 @@ const Courses = () => {
       description: 'Create interactive dashboards and compelling visualizations using Tableau and Power BI.',
       icon: Layers,
       duration: '6 weeks',
+      price: 5000,
+      rating: 4.8,
       prerequisites: ['Basic data analysis knowledge', 'Understanding of visualization concepts'],
       topics: [
         'Data visualization principles',
@@ -226,6 +240,8 @@ const Courses = () => {
       description: 'Explore neural networks, deep learning architectures, and implementation using Python frameworks.',
       icon: Brain,
       duration: '10 weeks',
+      price: 6000,
+      rating: 4.9,
       prerequisites: ['Python programming', 'Machine learning basics', 'Linear algebra'],
       topics: [
         'Neural network fundamentals',
@@ -469,7 +485,7 @@ const Courses = () => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesLevel = selectedLevel === 'all' || course.level === selectedLevel;
-    const matchesCategory = selectedCategory === 'all' || course.icon === selectedCategory;
+    const matchesCategory = selectedCategory === 'all' || course.icon.name === selectedCategory;
     return matchesSearch && matchesLevel && matchesCategory;
   });
 
@@ -595,6 +611,42 @@ const Courses = () => {
             <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
               Comprehensive training programs designed to enhance your skills and advance your career
             </p>
+            {/* Tutorial Guide */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto mt-8">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <MessageCircle className="h-6 w-6 text-sky-500" />
+                How to Explore Courses
+              </h2>
+              <div className="space-y-4 text-left">
+                <div className="flex items-start gap-3">
+                  <div className="bg-sky-100 p-2 rounded-full">
+                    <Search className="h-5 w-5 text-sky-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Search & Filter</h3>
+                    <p className="text-gray-600">Use the search bar to find specific courses or filter by level and category</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sky-100 p-2 rounded-full">
+                    <MousePointer className="h-5 w-5 text-sky-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">View Details</h3>
+                    <p className="text-gray-600">Click on any course card to view detailed information including topics, skills, and tools</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-sky-100 p-2 rounded-full">
+                    <ArrowRight className="h-5 w-5 text-sky-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900">Enroll Now</h3>
+                    <p className="text-gray-600">Click the "Enroll Now" button to start your learning journey via WhatsApp</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -628,19 +680,17 @@ const Courses = () => {
                 </SelectContent>
               </Select>
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[180px] bg-white/90 backdrop-blur-sm border-sky-200">
-                  <SelectValue placeholder="Category" />
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select Category" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
-                  <SelectItem value="data-analysis">Data Analysis</SelectItem>
-                  <SelectItem value="data-collection">Data Collection</SelectItem>
-                  <SelectItem value="data-visualization">Data Visualization</SelectItem>
-                  <SelectItem value="deep-learning">Deep Learning</SelectItem>
-                  <SelectItem value="design">Design</SelectItem>
-                  <SelectItem value="machine-learning">Machine Learning</SelectItem>
-                  <SelectItem value="qualitative-analysis">Qualitative Analysis</SelectItem>
-                  <SelectItem value="statistical-analysis">Statistical Analysis</SelectItem>
+                  <SelectItem value="BarChart">Data Analysis</SelectItem>
+                  <SelectItem value="Code">Programming</SelectItem>
+                  <SelectItem value="Database">Data Science</SelectItem>
+                  <SelectItem value="FileText">Data Collection</SelectItem>
+                  <SelectItem value="Layers">Visualization</SelectItem>
+                  <SelectItem value="Brain">Machine Learning</SelectItem>
                 </SelectContent>
               </Select>
             </div>

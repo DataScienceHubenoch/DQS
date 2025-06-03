@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Users } from 'lucide-react';
+import { MessageCircle, Users, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const handleContactSupport = () => {
@@ -15,6 +15,45 @@ const Footer = () => {
   const handleJoinCommunity = () => {
     window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
   };
+
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      icon: 'in',
+      link: 'https://linkedin.com/company/dataquestsolutions',
+      bgColor: 'bg-blue-100'
+    },
+    {
+      name: 'Twitter',
+      icon: '𝕏',
+      link: 'https://x.com/Dataquest123',
+      bgColor: 'bg-sky-100'
+    },
+    {
+      name: 'Facebook',
+      icon: 'f',
+      link: 'https://web.facebook.com/share/g/1ELLjtsTMA/',
+      bgColor: 'bg-blue-100'
+    },
+    {
+      name: 'Instagram',
+      icon: '📸',
+      link: 'https://www.instagram.com/dataquestsolutions/',
+      bgColor: 'bg-pink-100'
+    },
+    {
+      name: 'YouTube',
+      icon: '🎥',
+      link: 'https://www.youtube.com/@dataquestsolutions-z9k',
+      bgColor: 'bg-red-100'
+    },
+    {
+      name: 'TikTok',
+      icon: '🎵',
+      link: 'https://www.tiktok.com/@dataquestsolution',
+      bgColor: 'bg-gray-100'
+    }
+  ];
 
   return (
     <footer className="bg-gradient-to-r from-sky-900 via-sky-800 to-blue-900 text-white">
@@ -119,8 +158,26 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Social Media Links */}
         <div className="border-t border-sky-800 mt-12 pt-8">
-          <p className="text-center text-sky-200">
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold mb-4 text-sky-100">Follow Us</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 rounded-full flex items-center justify-center ${social.bgColor} text-gray-800 hover:opacity-80 transition-opacity`}
+                  title={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+          <p className="text-center text-sky-200 mt-8">
             © {new Date().getFullYear()} Data Quest Solutions. All rights reserved.
           </p>
         </div>

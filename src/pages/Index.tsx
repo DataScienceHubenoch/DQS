@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, Users } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Helmet } from 'react-helmet';
 
 const featuredTeamMembers = [
   {
@@ -59,6 +60,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-blue-100">
+      <Helmet>
+        <title>DataQuest Solutions - Data Science & Research Services</title>
+        <meta name="description" content="DataQuest Solutions provides comprehensive data science services, including data collection, analysis, AI development, and research writing. Transform your data into actionable insights." />
+        <meta name="keywords" content="data science, data analysis, machine learning, AI development, research writing, data collection, Kenya" />
+        <meta property="og:title" content="DataQuest Solutions - Data Science & Research Services" />
+        <meta property="og:description" content="Transform your data into actionable insights with our comprehensive data science services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dqs.vercel.app" />
+        <meta property="og:image" content="https://dqs.vercel.app/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DataQuest Solutions - Data Science & Research Services" />
+        <meta name="twitter:description" content="Transform your data into actionable insights with our comprehensive data science services." />
+        <meta name="twitter:image" content="https://dqs.vercel.app/og-image.jpg" />
+        <link rel="canonical" href="https://dqs.vercel.app" />
+      </Helmet>
+
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,6 +159,75 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Expert Team</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Skilled professionals dedicated to delivering excellence in data science and research
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                name: 'Enock Bereka',
+                role: 'Lead Data Scientist',
+                bio: 'Expert in machine learning and data analysis with over 5 years of experience.',
+                image: '/team/Enock Bereka.jpg'
+              },
+              {
+                name: 'Timothy Achalla',
+                role: 'Senior Data Engineer',
+                bio: 'Specializes in big data processing and cloud architecture.',
+                image: '/team/Timothy Achalla.jpg'
+              },
+              {
+                name: 'Nobert Wafula',
+                role: 'Data Analyst',
+                bio: 'Passionate about data visualization and statistical analysis.',
+                image: '/team/nobert wafula.jpg'
+              },
+              {
+                name: 'Ogechi Koel',
+                role: 'Machine Learning Engineer',
+                bio: 'Focused on developing and deploying ML models for real-world applications.',
+                image: '/team/ogechi koel.jpg'
+              }
+            ].map((member, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white/90 backdrop-blur-sm border-sky-200">
+                <CardHeader>
+                  <div className="text-center">
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-sky-100">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <CardTitle className="text-lg text-gray-900">{member.name}</CardTitle>
+                    <p className="text-sky-500 font-medium text-sm">{member.role}</p>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-700 text-sm text-center">{member.bio}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="text-sky-600 border-sky-200 hover:bg-sky-50"
+              asChild
+            >
+              <Link to="/team">View Full Team</Link>
+            </Button>
           </div>
         </div>
       </section>

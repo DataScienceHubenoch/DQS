@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MessageCircle, Mail, MapPin, Phone, Users } from 'lucide-react';
+import { toast } from 'sonner';
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleContactSupport = () => {
     const phoneNumber = '254707612395';
     const message = 'Hello! I would like to get in touch with your team.';
@@ -15,6 +18,41 @@ const Contact = () => {
 
   const handleJoinCommunity = () => {
     window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+
+      const whatsappMessage = `
+*New Contact Form Submission*
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}
+      `.trim();
+
+      const phoneNumber = '254707612395';
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      toast.success('Opening WhatsApp...');
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -39,7 +77,7 @@ const Contact = () => {
               <CardTitle className="text-2xl text-gray-900">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -47,9 +85,11 @@ const Contact = () => {
                     </label>
                     <Input
                       id="name"
+                      name="name"
                       type="text"
                       placeholder="Your name"
                       className="bg-white/90 backdrop-blur-sm border-sky-200"
+                      required
                     />
                   </div>
                   <div>
@@ -58,9 +98,11 @@ const Contact = () => {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="your.email@example.com"
                       className="bg-white/90 backdrop-blur-sm border-sky-200"
+                      required
                     />
                   </div>
                 </div>
@@ -70,9 +112,11 @@ const Contact = () => {
                   </label>
                   <Input
                     id="subject"
+                    name="subject"
                     type="text"
                     placeholder="What is this regarding?"
                     className="bg-white/90 backdrop-blur-sm border-sky-200"
+                    required
                   />
                 </div>
                 <div>
@@ -81,15 +125,18 @@ const Contact = () => {
                   </label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Your message here..."
                     className="min-h-[150px] bg-white/90 backdrop-blur-sm border-sky-200"
+                    required
                   />
                 </div>
                 <Button 
                   type="submit"
                   className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? 'Opening WhatsApp...' : 'Send via WhatsApp'}
                 </Button>
               </form>
             </CardContent>
