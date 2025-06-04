@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { MessageCircle, Users } from 'lucide-react';
+import { MessageCircle, Users, BookOpen, Download, Video, FileText, CheckCircle2, ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Helmet } from 'react-helmet';
+import Footer from '@/components/Footer';
 
 const featuredTeamMembers = [
   {
@@ -75,7 +76,7 @@ const Index = () => {
         <meta name="twitter:image" content="https://dqs.vercel.app/og-image.jpg" />
         <link rel="canonical" href="https://dqs.vercel.app" />
       </Helmet>
-
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -232,6 +233,295 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Free Resources Section */}
+      <section className="py-20 bg-gradient-to-b from-white via-blue-50 to-blue-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Free Resources</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Access our comprehensive guides and tutorials to enhance your data science skills
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Data Analysis Guide",
+                description: "A comprehensive guide to getting started with data analysis. Learn the fundamentals of data analysis, including data cleaning, visualization, and statistical analysis.",
+                icon: <BookOpen className="h-8 w-8 text-sky-500" />,
+                downloadLink: "/resources/data-analysis-guide.pdf",
+                topics: [
+                  "Data Cleaning Techniques",
+                  "Statistical Analysis",
+                  "Data Visualization",
+                  "Report Writing"
+                ]
+              },
+              {
+                title: "Python for Data Science",
+                description: "Free Python tutorials for data science beginners. Master Python programming for data analysis, including pandas, numpy, and matplotlib libraries.",
+                icon: <BookOpen className="h-8 w-8 text-sky-500" />,
+                downloadLink: "/resources/python-data-science.pdf",
+                topics: [
+                  "Python Basics",
+                  "Pandas for Data Analysis",
+                  "Data Visualization with Matplotlib",
+                  "Statistical Analysis with NumPy"
+                ]
+              },
+              {
+                title: "Research Methodology",
+                description: "Essential research methods and best practices. Learn how to conduct effective research, from problem formulation to data collection and analysis.",
+                icon: <BookOpen className="h-8 w-8 text-sky-500" />,
+                downloadLink: "/resources/research-methodology.pdf",
+                topics: [
+                  "Research Design",
+                  "Data Collection Methods",
+                  "Qualitative Analysis",
+                  "Quantitative Analysis"
+                ]
+              }
+            ].map((resource, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    {resource.icon}
+                    <CardTitle className="text-xl text-gray-900">{resource.title}</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-6">{resource.description}</p>
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-2">Topics Covered:</h4>
+                    <ul className="space-y-2">
+                      {resource.topics.map((topic, idx) => (
+                        <li key={idx} className="flex items-center gap-2 text-gray-600">
+                          <ArrowRight className="h-4 w-4 text-sky-500" />
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Button 
+                    className="w-full bg-sky-500 hover:bg-sky-600 text-white"
+                    onClick={() => {
+                      const phoneNumber = '254707612395';
+                      const message = `Hello! I would like to request the ${resource.title} guide.`;
+                      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }}
+                  >
+                    <Download className="h-5 w-5 mr-2" />
+                    Request Guide
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="text-sky-600 border-sky-200 hover:bg-sky-50"
+              asChild
+            >
+              <Link to="/resources">View All Resources</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Webinars Section */}
+      <section className="py-20 bg-gradient-to-b from-blue-50 via-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Upcoming Webinars</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Learn from industry professionals and enhance your data science skills
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Introduction to Machine Learning",
+                description: "Learn the fundamentals of machine learning and how to implement basic algorithms using Python.",
+                date: "March 25, 2024",
+                time: "2:00 PM EAT",
+                duration: "90 minutes",
+                speaker: "Enock Bereka",
+                role: "Lead Data Scientist",
+                icon: <Video className="h-8 w-8 text-sky-500" />,
+                registrationLink: "/webinars/intro-ml/register"
+              },
+              {
+                title: "Data Visualization Best Practices",
+                description: "Master the art of creating effective and engaging data visualizations using modern tools.",
+                date: "April 2, 2024",
+                time: "3:00 PM EAT",
+                duration: "60 minutes",
+                speaker: "Timothy Achalla",
+                role: "Senior Data Engineer",
+                icon: <Video className="h-8 w-8 text-sky-500" />,
+                registrationLink: "/webinars/data-viz/register"
+              },
+              {
+                title: "Research Data Analysis",
+                description: "Learn how to analyze research data effectively using statistical methods and visualization tools.",
+                date: "April 9, 2024",
+                time: "2:00 PM EAT",
+                duration: "90 minutes",
+                speaker: "Nobert Wafula",
+                role: "Data Analyst",
+                icon: <Video className="h-8 w-8 text-sky-500" />,
+                registrationLink: "/webinars/research-analysis/register"
+              }
+            ].map((webinar, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    {webinar.icon}
+                    <CardTitle className="text-xl text-gray-900">{webinar.title}</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-6">{webinar.description}</p>
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Calendar className="h-5 w-5 text-sky-500" />
+                      {webinar.date}
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Clock className="h-5 w-5 text-sky-500" />
+                      {webinar.time} ({webinar.duration})
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <Users className="h-5 w-5 text-sky-500" />
+                      {webinar.speaker} - {webinar.role}
+                    </div>
+                  </div>
+                  <Button 
+                    className="w-full bg-sky-500 hover:bg-sky-600 text-white"
+                    onClick={() => window.open(webinar.registrationLink, '_blank')}
+                  >
+                    Register Now
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="text-sky-600 border-sky-200 hover:bg-sky-50"
+              asChild
+            >
+              <Link to="/webinars">View All Webinars</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="py-20 bg-gradient-to-b from-white via-blue-50 to-blue-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Discover how we've helped organizations achieve their goals through data-driven solutions
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-12">
+            {[
+              {
+                title: "Healthcare Data Analysis",
+                description: "How we helped a healthcare provider optimize patient care through data-driven insights.",
+                client: "Regional Medical Center",
+                challenge: "The client needed to improve patient care efficiency and reduce wait times.",
+                solution: "Implemented a comprehensive data analysis system to track patient flow and identify bottlenecks.",
+                results: [
+                  "30% reduction in patient wait times",
+                  "25% improvement in resource allocation",
+                  "40% increase in patient satisfaction"
+                ],
+                icon: <FileText className="h-8 w-8 text-sky-500" />,
+                link: "/case-studies/healthcare"
+              },
+              {
+                title: "E-commerce Analytics",
+                description: "Improving customer experience and sales through advanced data analytics.",
+                client: "Online Retail Platform",
+                challenge: "The client wanted to increase customer retention and optimize their product recommendations.",
+                solution: "Developed a machine learning model for personalized product recommendations and customer behavior analysis.",
+                results: [
+                  "35% increase in customer retention",
+                  "45% improvement in recommendation accuracy",
+                  "50% growth in cross-selling revenue"
+                ],
+                icon: <FileText className="h-8 w-8 text-sky-500" />,
+                link: "/case-studies/ecommerce"
+              }
+            ].map((study, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+                <CardHeader>
+                  <div className="flex items-center gap-4 mb-4">
+                    {study.icon}
+                    <div>
+                      <CardTitle className="text-2xl text-gray-900">{study.title}</CardTitle>
+                      <p className="text-gray-600 mt-1">{study.client}</p>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <p className="text-gray-600 mb-6">{study.description}</p>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Challenge</h4>
+                          <p className="text-gray-600">{study.challenge}</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Solution</h4>
+                          <p className="text-gray-600">{study.solution}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-4">Results</h4>
+                      <ul className="space-y-3">
+                        {study.results.map((result, idx) => (
+                          <li key={idx} className="flex items-start gap-2 text-gray-600">
+                            <CheckCircle2 className="h-5 w-5 text-sky-500 mt-0.5" />
+                            {result}
+                          </li>
+                        ))}
+                      </ul>
+                      <Button 
+                        className="mt-6 bg-sky-500 hover:bg-sky-600 text-white"
+                        onClick={() => window.open(study.link, '_blank')}
+                      >
+                        Read Full Case Study
+                        <ArrowRight className="h-5 w-5 ml-2" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="text-sky-600 border-sky-200 hover:bg-sky-50"
+              asChild
+            >
+              <Link to="/case-studies">View All Case Studies</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -287,6 +577,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import Blog from '@/pages/Blog';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import NotFound from '@/pages/NotFound';
+import Resources from '@/pages/Resources';
 
 const AppRoutes = () => (
   <TooltipProvider>
@@ -21,6 +22,7 @@ const AppRoutes = () => (
       <Route path="/blog" element={<Blog />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/resources" element={<Resources />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </TooltipProvider>

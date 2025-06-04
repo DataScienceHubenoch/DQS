@@ -433,14 +433,14 @@ const Services = () => {
                 </div>
               </div>
             </div>
-          </div>
+        </div>
         </section>
 
         {/* Services Grid */}
         <section className="py-20 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
                 <Card 
                   key={index} 
                   className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200 cursor-pointer"
@@ -451,7 +451,7 @@ const Services = () => {
                       <service.icon className="w-12 h-12 text-sky-500 mx-auto" />
                     </div>
                     <CardTitle className="text-gray-900">{service.title}</CardTitle>
-                  </CardHeader>
+              </CardHeader>
                   <CardContent>
                     <p className="text-gray-700 mb-6">{service.description}</p>
                     <Button 
@@ -462,11 +462,11 @@ const Services = () => {
                       }}
                     >
                       Request Service
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
           </div>
         </section>
 
@@ -562,16 +562,16 @@ const Services = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Get Started?</h2>
             <p className="text-xl mb-8 text-gray-700 max-w-2xl mx-auto">
               Let's work together to transform your data into actionable insights and drive your success forward.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500" asChild>
                 <Link to="/contact">Contact Us</Link>
-              </Button>
+            </Button>
               <Button size="lg" variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600" asChild>
                 <Link to="/about">Learn More</Link>
-              </Button>
-            </div>
+            </Button>
           </div>
+        </div>
         </section>
       </div>
 

@@ -47,6 +47,12 @@ const Navigation = () => {
       description: 'Explore our training programs'
     },
     {
+      path: '/resources',
+      icon: FileText,
+      label: 'Resources',
+      description: 'Free guides and tutorials'
+    },
+    {
       path: '/blog',
       icon: FileText,
       label: 'Blog',
