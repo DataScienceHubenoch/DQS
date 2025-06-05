@@ -24,7 +24,11 @@ import {
   ChevronLeft,
   FileText,
   Bell,
-  RefreshCw
+  RefreshCw,
+  Clock,
+  Percent,
+  UserPlus,
+  MousePointerClick
 } from 'lucide-react';
 import {
   Dialog,
@@ -58,41 +62,107 @@ const Analytics = () => {
   const [showTutorial, setShowTutorial] = React.useState(true);
   const [currentTutorialStep, setCurrentTutorialStep] = React.useState(0);
 
+  const sampleMetrics = {
+    'Total Users': {
+      value: '12,458',
+      change: '+12.5%',
+      trend: 'up',
+      icon: <Users className="h-5 w-5 text-sky-500" />
+    },
+    'Active Sessions': {
+      value: '3,245',
+      change: '+8.2%',
+      trend: 'up',
+      icon: <Activity className="h-5 w-5 text-sky-500" />
+    },
+    'Conversion Rate': {
+      value: '4.8%',
+      change: '-1.2%',
+      trend: 'down',
+      icon: <Percent className="h-5 w-5 text-sky-500" />
+    },
+    'Avg. Session Duration': {
+      value: '4m 32s',
+      change: '+15.3%',
+      trend: 'up',
+      icon: <Clock className="h-5 w-5 text-sky-500" />
+    }
+  };
+
+  const sampleChartData = {
+    'User Growth': {
+      type: 'line',
+      data: [
+        { month: 'Jan', users: 8500 },
+        { month: 'Feb', users: 9200 },
+        { month: 'Mar', users: 9800 },
+        { month: 'Apr', users: 10500 },
+        { month: 'May', users: 11200 },
+        { month: 'Jun', users: 12458 }
+      ]
+    },
+    'Engagement Metrics': {
+      type: 'bar',
+      data: [
+        { metric: 'Page Views', value: 45600 },
+        { metric: 'Clicks', value: 23400 },
+        { metric: 'Time on Site', value: 32400 },
+        { metric: 'Bounce Rate', value: 15600 }
+      ]
+    },
+    'Conversion Funnel': {
+      type: 'funnel',
+      data: [
+        { stage: 'Visitors', value: 10000 },
+        { stage: 'Engaged', value: 6500 },
+        { stage: 'Interested', value: 3200 },
+        { stage: 'Converted', value: 480 }
+      ]
+    }
+  };
+
   const tutorialSteps = [
     {
       title: "Welcome to Analytics Dashboard",
-      description: "This guide will help you get started with our analytics platform. Let's walk through the main features and how to make the most of your data insights.",
-      icon: <HelpCircle className="h-6 w-6 text-sky-500" />
+      description: "This guide will help you get started with our analytics platform. You'll learn how to connect data sources, view key metrics, and analyze performance trends.",
+      icon: <HelpCircle className="h-6 w-6 text-sky-500" />,
+      example: "Example: View real-time user metrics and engagement data"
     },
     {
       title: "Connect Your Data",
-      description: "Start by connecting your data sources using the 'Connect Data Source' button. We support various data sources including databases (MySQL, PostgreSQL), APIs, file uploads (CSV, Excel), Google Analytics, and custom integrations.",
-      icon: <Database className="h-6 w-6 text-sky-500" />
+      description: "Start by connecting your data sources. We support various formats including databases (MySQL, PostgreSQL), APIs, file uploads (CSV, Excel), and Google Analytics.",
+      icon: <Database className="h-6 w-6 text-sky-500" />,
+      example: "Example: Connect your MySQL database using connection string: mysql://user:pass@host:3306/db"
     },
     {
       title: "View Key Metrics",
-      description: "Once connected, you'll see real-time key metrics including Total Users, Active Sessions, Conversion Rate, and Session Duration. These metrics are automatically updated and can be viewed in different time ranges.",
-      icon: <BarChart className="h-6 w-6 text-sky-500" />
+      description: "Monitor important metrics like Total Users, Active Sessions, Conversion Rate, and Session Duration. These metrics update in real-time and show trends over time.",
+      icon: <BarChart className="h-6 w-6 text-sky-500" />,
+      example: "Example: Total Users: 12,458 (+12.5% from last month)"
     },
     {
       title: "Explore Charts",
-      description: "Dive deeper into your data with interactive charts. The User Growth chart shows monthly trends, Engagement Metrics display user interaction patterns, and the Conversion Funnel visualizes your user journey and conversion rates.",
-      icon: <LineChart className="h-6 w-6 text-sky-500" />
+      description: "Analyze your data with interactive charts. The User Growth chart shows monthly trends, Engagement Metrics display user interaction patterns, and the Conversion Funnel visualizes your user journey.",
+      icon: <LineChart className="h-6 w-6 text-sky-500" />,
+      example: "Example: User Growth chart showing monthly progression from 8,500 to 12,458 users"
     },
     {
       title: "Filter and Customize",
-      description: "Use the filter button to customize your view. You can filter by date range, specific metrics, or data sources. Save your custom views for quick access later.",
-      icon: <Filter className="h-6 w-6 text-sky-500" />
+      description: "Use filters to focus on specific time periods, metrics, or data sources. Save your custom views for quick access and create automated reports.",
+      icon: <Filter className="h-6 w-6 text-sky-500" />,
+      example: "Example: Filter data for the last 30 days or specific user segments"
     },
     {
       title: "Export and Share",
       description: "Export your analytics data in various formats (CSV, PDF) or share insights directly with your team. Set up automated reports to be delivered to your inbox.",
-      icon: <FileText className="h-6 w-6 text-sky-500" />
+      icon: <FileText className="h-6 w-6 text-sky-500" />,
+      example: "Example: Export monthly performance report as PDF"
     },
     {
       title: "Set Up Alerts",
       description: "Configure alerts for important metrics. Get notified when user engagement drops, conversion rates change significantly, or when you reach specific milestones.",
-      icon: <Bell className="h-6 w-6 text-sky-500" />
+      icon: <Bell className="h-6 w-6 text-sky-500" />,
+      example: "Example: Alert when conversion rate drops below 4%"
     }
   ];
 
@@ -131,9 +201,16 @@ const Analytics = () => {
         <CardContent>
           <div className="flex items-start gap-4 mb-6">
             {tutorialSteps[currentTutorialStep].icon}
-            <p className="text-gray-600 flex-1">
-              {tutorialSteps[currentTutorialStep].description}
-            </p>
+            <div className="flex-1">
+              <p className="text-gray-600 mb-4">
+                {tutorialSteps[currentTutorialStep].description}
+              </p>
+              <div className="bg-sky-50 p-4 rounded-lg">
+                <p className="text-sm text-sky-700 font-medium">
+                  {tutorialSteps[currentTutorialStep].example}
+                </p>
+              </div>
+            </div>
           </div>
           <div className="flex justify-between items-center">
             <div className="flex gap-2">
@@ -310,38 +387,30 @@ const Analytics = () => {
             </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {['Total Users', 'Active Sessions', 'Conversion Rate', 'Avg. Session Duration'].map((title, index) => (
-              <Card key={index} className="bg-white/90 backdrop-blur-sm border-sky-200">
+            {Object.entries(sampleMetrics).map(([title, data]) => (
+              <Card key={title} className="bg-white/90 backdrop-blur-sm border-sky-200">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium text-gray-500">
                     {title}
                   </CardTitle>
-                  {isLoading ? (
-                    <Loader2 className="h-4 w-4 text-sky-500 animate-spin" />
-                  ) : (
-                    <div className="h-4 w-4 text-sky-500" />
-                  )}
+                  {data.icon}
                 </CardHeader>
                 <CardContent>
-                  {isLoading ? (
-                    <div className="h-8 flex items-center justify-center">
-                      <Loader2 className="h-6 w-6 text-sky-500 animate-spin" />
+                  <div className="flex items-baseline justify-between">
+                    <div className="text-2xl font-bold text-gray-900">
+                      {data.value}
                     </div>
-                  ) : connectedSources.length === 0 ? (
-                    <div className="text-center text-gray-500">
-                      <Button
-                        variant="link"
-                        className="text-sky-500 hover:text-sky-600"
-                        onClick={() => setShowConnectionModal(true)}
-                      >
-                        Connect data source
-                      </Button>
+                    <div className={`flex items-center text-sm ${
+                      data.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                    }`}>
+                      {data.trend === 'up' ? (
+                        <ArrowUpRight className="h-4 w-4 mr-1" />
+                      ) : (
+                        <ArrowDownRight className="h-4 w-4 mr-1" />
+                      )}
+                      {data.change}
                     </div>
-                  ) : (
-                    <div className="text-center text-gray-500">
-                      Loading metrics...
-                    </div>
-                  )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -352,45 +421,62 @@ const Analytics = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Performance Charts</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {[
-              { title: 'User Growth', description: 'Monthly user acquisition trends' },
-              { title: 'Engagement Metrics', description: 'User interaction and activity patterns' },
-              { title: 'Conversion Funnel', description: 'User journey and conversion rates' }
-            ].map((chart, index) => (
-              <Card key={index} className="bg-white/90 backdrop-blur-sm border-sky-200">
+            {Object.entries(sampleChartData).map(([title, data]) => (
+              <Card key={title} className="bg-white/90 backdrop-blur-sm border-sky-200">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg font-medium text-gray-900">
-                      {chart.title}
+                      {title}
                     </CardTitle>
-                    {isLoading ? (
-                      <Loader2 className="h-5 w-5 text-sky-500 animate-spin" />
+                    {data.type === 'line' ? (
+                      <LineChart className="h-5 w-5 text-sky-500" />
+                    ) : data.type === 'bar' ? (
+                      <BarChart className="h-5 w-5 text-sky-500" />
                     ) : (
-                      <div className="h-5 w-5 text-sky-500" />
+                      <PieChart className="h-5 w-5 text-sky-500" />
                     )}
                   </div>
-                  <p className="text-sm text-gray-500">{chart.description}</p>
+                  <p className="text-sm text-gray-500">
+                    {data.type === 'line' ? 'Monthly user acquisition trends' :
+                     data.type === 'bar' ? 'User interaction and activity patterns' :
+                     'User journey and conversion rates'}
+                  </p>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[200px] flex items-center justify-center bg-gray-50 rounded-lg">
-                    {isLoading ? (
-                      <Loader2 className="h-8 w-8 text-sky-500 animate-spin" />
-                    ) : connectedSources.length === 0 ? (
-                      <div className="text-center">
-                        <p className="text-gray-500 mb-2">No data available</p>
-                        <Button
-                          variant="link"
-                          className="text-sky-500 hover:text-sky-600"
-                          onClick={() => setShowConnectionModal(true)}
-                        >
-                          Connect data source
-                        </Button>
+                    <div className="text-center">
+                      <p className="text-gray-500 mb-2">Sample Data Preview</p>
+                      <div className="text-sm text-gray-600">
+                        {data.type === 'line' ? (
+                          <div className="space-y-1">
+                            {data.data.map((point, i) => (
+                              <div key={i} className="flex justify-between">
+                                <span>{point.month}:</span>
+                                <span>{point.users.toLocaleString()} users</span>
+                              </div>
+                            ))}
+                          </div>
+                        ) : data.type === 'bar' ? (
+                          <div className="space-y-1">
+                            {data.data.map((item, i) => (
+                              <div key={i} className="flex justify-between">
+                                <span>{item.metric}:</span>
+                                <span>{item.value.toLocaleString()}</span>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="space-y-1">
+                            {data.data.map((stage, i) => (
+                              <div key={i} className="flex justify-between">
+                                <span>{stage.stage}:</span>
+                                <span>{stage.value.toLocaleString()}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                    ) : (
-                      <div className="text-center text-gray-500">
-                        Loading chart data...
-                      </div>
-                    )}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
