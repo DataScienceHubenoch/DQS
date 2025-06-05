@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { MessageCircle, Users, BookOpen, Download, Video, FileText, CheckCircle2, ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Helmet } from 'react-helmet';
@@ -385,38 +385,36 @@ const Index = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-6">{webinar.description}</p>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Calendar className="h-5 w-5 text-sky-500" />
+                  <div className="space-y-2">
+                    <div className="flex items-center text-gray-600">
+                      <Calendar className="h-4 w-4 mr-2 text-sky-500" />
                       {webinar.date}
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Clock className="h-5 w-5 text-sky-500" />
-                      {webinar.time} ({webinar.duration})
+                    <div className="flex items-center text-gray-600">
+                      <Clock className="h-4 w-4 mr-2 text-sky-500" />
+                      {webinar.time}
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600">
-                      <Users className="h-5 w-5 text-sky-500" />
-                      {webinar.speaker} - {webinar.role}
+                    <div className="text-gray-600">
+                      Speaker: {webinar.speaker}
                     </div>
                   </div>
-                  <Button 
-                    className="w-full bg-sky-500 hover:bg-sky-600 text-white"
-                    onClick={() => window.open(webinar.registrationLink, '_blank')}
-                  >
-                    Register Now
-                  </Button>
                 </CardContent>
+                <CardFooter>
+                  <Button
+                    className="w-full bg-sky-500 hover:bg-sky-600 text-white"
+                    onClick={() => {
+                      const phoneNumber = '254707612395';
+                      const message = `Hello! I would like to join the webinar "${webinar.title}" on ${webinar.date} at ${webinar.time}.`;
+                      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }}
+                  >
+                    <Video className="h-5 w-5 mr-2" />
+                    Join Us
+                  </Button>
+                </CardFooter>
               </Card>
             ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button 
-              variant="outline" 
-              className="text-sky-600 border-sky-200 hover:bg-sky-50"
-              asChild
-            >
-              <Link to="/webinars">View All Webinars</Link>
-            </Button>
           </div>
         </div>
       </section>
@@ -448,18 +446,32 @@ const Index = () => {
                 link: "/case-studies/healthcare"
               },
               {
-                title: "E-commerce Analytics",
+                title: "Retail Analytics",
                 description: "Improving customer experience and sales through advanced data analytics.",
-                client: "Online Retail Platform",
-                challenge: "The client wanted to increase customer retention and optimize their product recommendations.",
-                solution: "Developed a machine learning model for personalized product recommendations and customer behavior analysis.",
+                client: "East Africa Retail Chain",
+                challenge: "The client wanted to optimize inventory management and increase sales.",
+                solution: "Developed a comprehensive retail analytics solution for inventory optimization and sales analysis.",
                 results: [
-                  "35% increase in customer retention",
-                  "45% improvement in recommendation accuracy",
-                  "50% growth in cross-selling revenue"
+                  "35% reduction in inventory costs",
+                  "25% increase in sales revenue",
+                  "40% improvement in stock availability"
                 ],
                 icon: <FileText className="h-8 w-8 text-sky-500" />,
-                link: "/case-studies/ecommerce"
+                link: "/case-studies/retail"
+              },
+              {
+                title: "Financial Services Analytics",
+                description: "Enhancing risk assessment and customer service through data analytics.",
+                client: "East Africa Bank",
+                challenge: "The client needed to improve risk assessment and fraud detection.",
+                solution: "Implemented an AI-powered risk assessment and fraud detection system.",
+                results: [
+                  "60% faster loan approval process",
+                  "45% reduction in fraud incidents",
+                  "30% increase in customer satisfaction"
+                ],
+                icon: <FileText className="h-8 w-8 text-sky-500" />,
+                link: "/case-studies/financial"
               }
             ].map((study, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow duration-300">

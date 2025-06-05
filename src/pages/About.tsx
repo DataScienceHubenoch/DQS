@@ -66,8 +66,8 @@ const About = () => {
                 <p className="text-gray-600 text-lg">
                   To be the leading provider of data analysis and research training in East Africa, fostering a community of skilled professionals who drive innovation and development.
                 </p>
-              </div>
-            </div>
+          </div>
+        </div>
           </div>
         </section>
 

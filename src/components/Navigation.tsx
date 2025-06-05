@@ -4,7 +4,7 @@ import Logo from './Logo';
 import Web3Wallet from './Web3Wallet';
 import MobileMenu from './MobileMenu';
 import NetworkStatus from './NetworkStatus';
-import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail } from 'lucide-react';
+import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail, ClipboardList } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 
@@ -27,6 +27,12 @@ const Navigation = () => {
       icon: Settings,
       label: 'Services',
       description: 'Explore our data solutions'
+    },
+    {
+      path: '/case-studies',
+      icon: ClipboardList,
+      label: 'Case Studies',
+      description: 'View our success stories'
     },
     {
       path: '/consulting',

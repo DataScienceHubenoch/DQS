@@ -14,6 +14,7 @@ const MobileMenu = () => {
     { label: 'Services', path: '/services' },
     { label: 'Consulting', path: '/consulting' },
     { label: 'Courses', path: '/courses' },
+    { label: 'Resources', path: '/resources' },
     { label: 'Team', path: '/team' },
     { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' },

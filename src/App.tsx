@@ -19,6 +19,11 @@ import WhatsAppButton from './components/WhatsAppButton';
 import { Web3Provider } from '@/contexts/Web3Context';
 import { Toaster } from '@/components/ui/toaster';
 import Analytics from '@/pages/Analytics';
+import Resources from '@/pages/Resources';
+import HealthcareCaseStudy from '@/pages/case-studies/Healthcare';
+import RetailCaseStudy from '@/pages/case-studies/Retail';
+import FinancialCaseStudy from '@/pages/case-studies/Financial';
+import CaseStudiesIndex from '@/pages/case-studies/index';
 
 const App = () => {
   return (
@@ -45,6 +50,11 @@ const App = () => {
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/case-studies" element={<CaseStudiesIndex />} />
+                <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
+                <Route path="/case-studies/retail" element={<RetailCaseStudy />} />
+                <Route path="/case-studies/financial" element={<FinancialCaseStudy />} />
               </Routes>
             </main>
             <WhatsAppButton />
