@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { MessageCircle, Users, BookOpen, Download, Video, FileText, CheckCircle2, ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Helmet } from 'react-helmet';
-import Footer from '@/components/Footer';
 
 const featuredTeamMembers = [
   {
@@ -511,10 +510,12 @@ const Index = () => {
                       </ul>
                       <Button 
                         className="mt-6 bg-sky-500 hover:bg-sky-600 text-white"
-                        onClick={() => window.open(study.link, '_blank')}
+                        asChild
                       >
-                        Read Full Case Study
-                        <ArrowRight className="h-5 w-5 ml-2" />
+                        <Link to={study.link}>
+                          Read Full Case Study
+                          <ArrowRight className="h-5 w-5 ml-2" />
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -589,8 +590,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
