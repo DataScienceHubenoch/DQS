@@ -32,15 +32,15 @@ const Footer = () => {
             {/* Social Media Icons */}
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com/dataquestsolutions"
+                href="https://www.youtube.com/@dataquestsolutions-z9k"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
               >
-                <Facebook className="h-5 w-5" />
+                <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com/dataquestsolutions"
+                href="https://x.com/Dataquest123"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -48,15 +48,7 @@ const Footer = () => {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://instagram.com/dataquestsolutions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-sky-500 transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com/company/dataquestsolutions"
+                href="https://www.linkedin.com/groups/10084405/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -64,12 +56,12 @@ const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://youtube.com/@dataquestsolutions"
+                href="https://web.facebook.com/share/g/1BpECMKhi9/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
               >
-                <Youtube className="h-5 w-5" />
+                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>
