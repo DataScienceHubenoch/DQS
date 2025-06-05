@@ -63,6 +63,14 @@ const Footer = () => {
               >
                 <Facebook className="h-5 w-5" />
               </a>
+              <a
+                href="https://instagram.com/dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
