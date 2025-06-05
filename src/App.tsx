@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { Helmet } from 'react-helmet';
 import Navigation from './components/Navigation';
@@ -55,6 +55,7 @@ const App = () => {
                 <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
                 <Route path="/case-studies/retail" element={<RetailCaseStudy />} />
                 <Route path="/case-studies/financial" element={<FinancialCaseStudy />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
             <WhatsAppButton />

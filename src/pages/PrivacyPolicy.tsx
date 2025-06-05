@@ -1,96 +1,197 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ChevronUp } from 'lucide-react';
 
 const PrivacyPolicy = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Privacy Policy</h1>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <Helmet>
+        <title>Privacy Policy - Data Quest Solutions</title>
+        <meta name="description" content="Learn about how Data Quest Solutions collects, uses, and protects your personal information." />
+      </Helmet>
+
+      <div className="max-w-4xl mx-auto space-y-8">
+        {/* Header Section */}
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Privacy Policy</h1>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Last updated: {new Date().toLocaleDateString()}
+          </p>
         </div>
-      </section>
 
-      {/* Privacy Policy Content */}
-      <section className="py-16 bg-gradient-to-b from-sky-100 via-sky-50 to-sky-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 mb-8">
-              At Data Quest Solutions, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.
+        {/* Introduction */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">Introduction</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-slate-700 leading-relaxed">
+              At Data Quest Solutions, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
             </p>
+            <p className="text-slate-700 leading-relaxed">
+              Please read this privacy policy carefully. By accessing or using our services, you acknowledge that you have read, understood, and agree to be bound by all the terms of this privacy policy.
+            </p>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Information We Collect</h2>
-            <p className="text-gray-700 mb-4">We collect information that you provide directly to us, including:</p>
-            <ul className="list-disc pl-6 text-gray-700 mb-8 space-y-2">
-              <li>Name and contact information</li>
-              <li>Email address</li>
-              <li>Phone number</li>
-              <li>Payment information</li>
-              <li>Service preferences and requirements</li>
-              <li>Communication history</li>
-            </ul>
+        {/* Information Collection */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">Information We Collect</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <h3 className="text-xl font-medium text-slate-800">Personal Information</h3>
+              <ul className="list-disc list-inside space-y-2 text-slate-700">
+                <li>Name and contact information</li>
+                <li>Email address</li>
+                <li>Phone number</li>
+                <li>Company name and position</li>
+                <li>Billing and payment information</li>
+              </ul>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-medium text-slate-800">Usage Information</h3>
+              <ul className="list-disc list-inside space-y-2 text-slate-700">
+                <li>IP address and browser type</li>
+                <li>Pages visited and time spent</li>
+                <li>Device information</li>
+                <li>Cookies and similar technologies</li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. How We Use Your Information</h2>
-            <p className="text-gray-700 mb-4">We use the collected information for various purposes:</p>
-            <ul className="list-disc pl-6 text-gray-700 mb-8 space-y-2">
-              <li>To provide and maintain our services</li>
-              <li>To process your payments and transactions</li>
-              <li>To communicate with you about our services</li>
-              <li>To improve our services and user experience</li>
-              <li>To send you updates and marketing communications (with your consent)</li>
-              <li>To comply with legal obligations</li>
-            </ul>
+        {/* Information Usage */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">How We Use Your Information</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Primary Uses</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Provide and maintain our services</li>
+                  <li>Process your transactions</li>
+                  <li>Send you updates and marketing communications</li>
+                  <li>Respond to your inquiries</li>
+                </ul>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Secondary Uses</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Improve our website and services</li>
+                  <li>Analyze usage patterns</li>
+                  <li>Prevent fraud and abuse</li>
+                  <li>Comply with legal obligations</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Information Sharing and Disclosure</h2>
-            <p className="text-gray-700 mb-4">We may share your information with:</p>
-            <ul className="list-disc pl-6 text-gray-700 mb-8 space-y-2">
-              <li>Service providers who assist in our operations</li>
-              <li>Professional advisors and consultants</li>
-              <li>Law enforcement when required by law</li>
-              <li>Business partners with your consent</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Data Security</h2>
-            <p className="text-gray-700 mb-8">
+        {/* Data Security */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">Data Security</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-slate-700 leading-relaxed">
               We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
             </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Security Measures</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Encryption of sensitive data</li>
+                  <li>Regular security assessments</li>
+                  <li>Access controls and authentication</li>
+                  <li>Secure data storage</li>
+                </ul>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Your Responsibilities</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Keep your login credentials secure</li>
+                  <li>Use strong passwords</li>
+                  <li>Report any security concerns</li>
+                  <li>Update your contact information</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Your Rights</h2>
-            <p className="text-gray-700 mb-4">You have the right to:</p>
-            <ul className="list-disc pl-6 text-gray-700 mb-8 space-y-2">
-              <li>Access your personal information</li>
-              <li>Correct inaccurate information</li>
-              <li>Request deletion of your information</li>
-              <li>Object to processing of your information</li>
-              <li>Withdraw consent at any time</li>
-            </ul>
+        {/* User Rights */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">Your Rights</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Access and Control</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Access your personal data</li>
+                  <li>Correct inaccurate data</li>
+                  <li>Request data deletion</li>
+                  <li>Object to data processing</li>
+                </ul>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium text-slate-800">Additional Rights</h3>
+                <ul className="list-disc list-inside space-y-2 text-slate-700">
+                  <li>Data portability</li>
+                  <li>Withdraw consent</li>
+                  <li>File a complaint</li>
+                  <li>Request information</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Data Retention</h2>
-            <p className="text-gray-700 mb-8">
-              We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required by law.
+        {/* Contact Information */}
+        <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold text-slate-900">Contact Us</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-slate-700 leading-relaxed">
+              If you have any questions about this Privacy Policy or our data practices, please contact us at:
             </p>
+            <div className="bg-slate-50 p-6 rounded-lg space-y-3">
+              <p className="text-slate-700">
+                <strong>WhatsApp:</strong> +254 707 612 395
+              </p>
+              <p className="text-slate-700">
+                <strong>Email:</strong> dataquestsolutions2@gmail.com
+              </p>
+              <p className="text-slate-700">
+                <strong>Location:</strong> KAKAMEGA, Kenya
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Children's Privacy</h2>
-            <p className="text-gray-700 mb-8">
-              Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children.
-            </p>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Changes to This Policy</h2>
-            <p className="text-gray-700 mb-8">
-              We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
-            </p>
-
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Contact Us</h2>
-            <p className="text-gray-700 mb-2">If you have any questions about this Privacy Policy, please contact us:</p>
-            <ul className="list-none pl-6 text-gray-700 mb-8 space-y-2">
-              <li>Email: <a href="mailto:dataquestsolutions2@gmail.com" className="text-sky-600 hover:text-sky-700 hover:underline">dataquestsolutions2@gmail.com</a></li>
-              <li>WhatsApp: +254707612395</li>
-              <li>WhatsApp: +254701344230</li>
-            </ul>
-          </div>
+        {/* Back to Top Button */}
+        <div className="fixed bottom-8 right-8">
+          <Button
+            onClick={scrollToTop}
+            className="rounded-full p-3 bg-slate-900 hover:bg-slate-800 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            aria-label="Back to top"
+          >
+            <ChevronUp className="h-6 w-6" />
+          </Button>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

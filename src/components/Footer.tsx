@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
+import { MessageCircle, Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,7 +15,7 @@ const Footer = () => {
             <p className="text-gray-400 mb-4">
               Empowering organizations with data-driven insights and solutions for sustainable growth.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-4">
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-sky-500" />
                 <span>+254707612395</span>
@@ -26,8 +26,51 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-sky-500" />
-                <span>Nairobi, Kenya</span>
+                <span>Kakamega, Kenya</span>
               </div>
+            </div>
+            {/* Social Media Icons */}
+            <div className="flex space-x-4">
+              <a
+                href="https://facebook.com/dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://twitter.com/dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="https://instagram.com/dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://linkedin.com/company/dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://youtube.com/@dataquestsolutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-sky-500 transition-colors"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
@@ -136,7 +179,7 @@ const Footer = () => {
             © {new Date().getFullYear()} DataQuest Solutions. All rights reserved.
           </p>
           <div className="mt-4 space-x-4">
-            <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">
+            <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
               Privacy Policy
             </Link>
             <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
