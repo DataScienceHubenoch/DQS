@@ -28,7 +28,7 @@ const Team = () => {
     {
       id: 2,
       name: 'Timothy Achalla',
-      role: 'Senior Data Engineer',
+      role: 'Senior AI Engineer',
       bio: 'Specializes in big data processing and cloud architecture.',
       image: '/team/Timothy Achalla.jpg'
     },
