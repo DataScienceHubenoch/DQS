@@ -64,7 +64,7 @@ const About = () => {
                   <h2 className="text-2xl font-bold text-gray-900">Our Vision</h2>
                 </div>
                 <p className="text-gray-600 text-lg">
-                  To be the leading provider of data analysis and research training in East Africa, fostering a community of skilled professionals who drive innovation and development.
+                  Our vision is to be a trusted partner in transforming the way businesses and individuals leverage data, technology, and knowledge. We strive to lead the way in innovation, providing strategic insights and expertise that fuel progress, drive operational excellence, and unlock new opportunities for success in an ever-evolving digital landscape. 
                 </p>
           </div>
         </div>
