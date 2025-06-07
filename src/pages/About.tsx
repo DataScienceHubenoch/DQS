@@ -35,7 +35,7 @@ const About = () => {
                 About DataQuest Solutions
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-700 max-w-3xl mx-auto">
-                Empowering organizations through innovative data science solutions and expert guidance
+                Empowering organizations with innovative data science solutions and expert guidance to drive smarter decisions and sustainable growth
           </p>
         </div>
           </div>
