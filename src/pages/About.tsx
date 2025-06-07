@@ -53,7 +53,8 @@ const About = () => {
                   <h2 className="text-2xl font-bold text-gray-900">Our Mission</h2>
                 </div>
                 <p className="text-gray-600 text-lg">
-                  To empower individuals and organizations with data-driven skills and knowledge, enabling them to make informed decisions and drive positive change in their communities.
+                  Our mission is to empower businesses, organizations, and individuals by delivering innovative tools, expert knowledge, and tailored solutions that foster growth, enhance decision-making, and drive success in a data driven world. Through high-quality data services, cutting-edge AI development, and comprehensive training programs, we enable our clients to optimize performance and stay ahead of industry trends.
+
                 </p>
               </div>
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-sky-100">
