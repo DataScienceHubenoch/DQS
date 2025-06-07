@@ -22,14 +22,14 @@ const Team = () => {
       id: 1,
       name: 'Enock Bereka',
       role: 'Lead Data Scientist',
-      bio: 'Expert in machine learning and data analysis with over 5 years of experience.',
+      bio: 'Expert in machine learning and data analysis with over 3 years of experience.',
       image: '/team/Enock Bereka.jpg'
     },
     {
       id: 2,
       name: 'Timothy Achalla',
       role: 'Senior AI Engineer',
-      bio: 'Specializes in big data processing and cloud architecture.',
+      bio: 'Specializes in big data processing and AI architectures.',
       image: '/team/Timothy Achalla.jpg'
     },
     {
