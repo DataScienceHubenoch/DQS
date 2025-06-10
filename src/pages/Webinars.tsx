@@ -7,13 +7,13 @@ import { Button } from '@/components/ui/button';
 const Webinars = () => {
   const upcomingWebinars = [
     {
-      title: "Introduction to Machine Learning",
-      description: "Learn the fundamentals of machine learning and how to implement basic algorithms using Python.",
-      date: "March 25, 2024",
-      time: "2:00 PM EAT",
-      duration: "90 minutes",
-      speaker: "Enock Bereka",
-      role: "Lead Data Scientist",
+      title: "Machine Learning for Early Disease Detection",
+      description: "Enhancing machine learning for Lung Cancer Prediction",
+      date: "June 15, 2025",
+      time: "7:00 PM EAT",
+      duration: "120 minutes",
+      speaker: "Ogechi Koel",
+      role: "Biostatistician & Machine Learning Engineer",
       icon: <Video className="h-8 w-8 text-sky-500" />,
       registrationLink: "/webinars/intro-ml/register"
     },
