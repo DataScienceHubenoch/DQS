@@ -4,11 +4,21 @@ import Logo from './Logo';
 import Web3Wallet from './Web3Wallet';
 import MobileMenu from './MobileMenu';
 import NetworkStatus from './NetworkStatus';
+import SearchComponent from './SearchComponent';
 import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail, ClipboardList } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  
+  const handleSearchResult = (result: any) => {
+    if (result.path) {
+      navigate(result.path);
+    }
+  };
+
   const menuItems = [
     {
       path: '/',
@@ -81,12 +91,19 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
               <Logo />
-              <span className="ml-2 text-blue-900 font-semibold text-lg">DATAQUEST SOLUTIONS</span>
+              <span className="ml-2 text-blue-900 font-semibold text-lg hidden sm:block">DATAQUEST SOLUTIONS</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-4">
+            <SearchComponent 
+              onResultClick={handleSearchResult}
+              className="w-64"
+            />
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-6">
             {menuItems.map((item) => (
               <TooltipProvider key={item.path}>
                 <Tooltip>
@@ -107,7 +124,7 @@ const Navigation = () => {
                 </Tooltip>
               </TooltipProvider>
             ))}
-            <div className="ml-4">
+            <div className="ml-2">
               <Web3Wallet />
             </div>
           </div>
@@ -130,6 +147,15 @@ const Navigation = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-blue-50/95 backdrop-blur-md border-b border-blue-100">
           <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-3 py-2">
+              <SearchComponent 
+                onResultClick={(result) => {
+                  handleSearchResult(result);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full"
+              />
+            </div>
             {menuItems.map((item) => (
               <Link
                 key={item.path}

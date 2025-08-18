@@ -3,6 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import CourseEnrollmentForm from '@/components/forms/CourseEnrollmentForm';
+import SEO from '@/components/SEO';
+import { COMPANY_INFO } from '@/lib/constants';
 import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle, Clock, Check, Users, BookOpen, Target, ArrowRight, BarChart, Code, Layers, Brain, Microscope, Calculator, Timer, Star, StarHalf, Calendar, MousePointer } from 'lucide-react';
 import {
   Dialog,
@@ -18,16 +21,16 @@ const Courses = () => {
   const [selectedLevel, setSelectedLevel] = React.useState('all');
   const [selectedCategory, setSelectedCategory] = React.useState('all');
   const [selectedCourse, setSelectedCourse] = React.useState<typeof courses[0] | null>(null);
+  const [showEnrollmentForm, setShowEnrollmentForm] = React.useState(false);
+  const [enrollmentCourse, setEnrollmentCourse] = React.useState<string>('');
 
   const handleEnroll = (courseTitle: string) => {
-    const phoneNumber = '254707612395';
-    const message = `Hello! I would like to enroll in your "${courseTitle}" course. Could you please provide more details about the course schedule and enrollment process?`;
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    setEnrollmentCourse(courseTitle);
+    setShowEnrollmentForm(true);
   };
 
   const handleJoinCommunity = () => {
-    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
+    window.open(COMPANY_INFO.whatsappGroup, '_blank');
   };
 
   const courses = [
@@ -588,7 +591,7 @@ const Courses = () => {
           <Button
             className="bg-sky-500 hover:bg-sky-600 text-white"
             onClick={() => {
-              const phoneNumber = '254707612395';
+              const phoneNumber = COMPANY_INFO.phone.replace('+', '');
               const message = `Hello! I would like to enroll in the "${course.title}" course. Could you please provide more information about the course schedule and pricing?`;
               const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
               window.open(whatsappUrl, '_blank');
@@ -603,6 +606,13 @@ const Courses = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Our Courses"
+        description="Comprehensive data science training programs including Python, R, machine learning, data visualization, and statistical analysis courses."
+        url="https://dqs.vercel.app/courses"
+        keywords="data science courses, Python training, R programming, machine learning course, data analysis training, statistical analysis"
+      />
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -732,10 +742,7 @@ const Courses = () => {
                     className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
                     onClick={(e) => {
                       e.stopPropagation();
-                      const phoneNumber = '254707612395';
-                      const message = `Hello! I would like to enroll in the "${course.title}" course. Could you please provide more information about the course schedule and pricing?`;
-                      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                      window.open(whatsappUrl, '_blank');
+                      handleEnroll(course.title);
                     }}
                   >
                     Enroll Now
@@ -756,7 +763,7 @@ const Courses = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500" asChild>
-              <a href="https://wa.me/254707612395">Contact Us</a>
+              <a href={`https://wa.me/${COMPANY_INFO.phone.replace('+', '')}`}>Contact Us</a>
             </Button>
             <Button size="lg" variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600" asChild>
               <a href="#courses">View All Courses</a>
@@ -766,6 +773,22 @@ const Courses = () => {
       </section>
 
       {selectedCourse && <CourseModal course={selectedCourse} />}
+      
+      {/* Course Enrollment Modal */}
+      <Dialog open={showEnrollmentForm} onOpenChange={setShowEnrollmentForm}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Enroll in Course</DialogTitle>
+            <DialogDescription>
+              Complete the enrollment form below to join our {enrollmentCourse} course.
+            </DialogDescription>
+          </DialogHeader>
+          <CourseEnrollmentForm 
+            defaultCourse={enrollmentCourse}
+            onSuccess={() => setShowEnrollmentForm(false)} 
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

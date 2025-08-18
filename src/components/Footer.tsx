@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MessageCircle, Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import NewsletterForm from '@/components/forms/NewsletterForm';
+import { COMPANY_INFO } from '@/lib/constants';
 
 const Footer = () => {
   return (
@@ -11,28 +13,28 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-white text-lg font-semibold mb-4">DataQuest Solutions</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">{COMPANY_INFO.name}</h3>
             <p className="text-gray-400 mb-4">
-              Empowering organizations with data-driven insights and solutions for sustainable growth.
+              {COMPANY_INFO.description}
             </p>
             <div className="space-y-2 mb-4">
               <div className="flex items-center gap-2">
                 <Phone className="h-5 w-5 text-sky-500" />
-                <span>+254707612395</span>
+                <span>{COMPANY_INFO.phone}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-5 w-5 text-sky-500" />
-                <span>dataquestsolutions2@gmail.com</span>
+                <span>{COMPANY_INFO.email}</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-sky-500" />
-                <span>Kakamega, Kenya</span>
+                <span>{COMPANY_INFO.location}</span>
               </div>
             </div>
             {/* Social Media Icons */}
             <div className="flex space-x-4">
               <a
-                href="https://www.youtube.com/@dataquestsolutions-z9k"
+                href={COMPANY_INFO.social.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -40,7 +42,7 @@ const Footer = () => {
                 <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="https://x.com/Dataquest123"
+                href={COMPANY_INFO.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -48,7 +50,7 @@ const Footer = () => {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://www.linkedin.com/groups/10084405/"
+                href={COMPANY_INFO.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -56,7 +58,7 @@ const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="https://web.facebook.com/share/g/1BpECMKhi9/"
+                href={COMPANY_INFO.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -64,7 +66,7 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://instagram.com/dataquestsolutions"
+                href={COMPANY_INFO.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-sky-500 transition-colors"
@@ -154,7 +156,7 @@ const Footer = () => {
                 <div className="space-y-3">
                   <Button 
                     className="w-full bg-sky-500 hover:bg-sky-600 text-white"
-                    onClick={() => window.open('https://wa.me/254707612395', '_blank')}
+                    onClick={() => window.open(`https://wa.me/${COMPANY_INFO.phone.replace('+', '')}`, '_blank')}
                   >
                     <MessageCircle className="h-5 w-5 mr-2" />
                     WhatsApp
@@ -162,7 +164,7 @@ const Footer = () => {
                   <Button 
                     variant="outline" 
                     className="w-full border-gray-600 text-gray-300 hover:bg-gray-700"
-                    onClick={() => window.location.href = 'mailto:dataquestsolutions2@gmail.com'}
+                    onClick={() => window.location.href = `mailto:${COMPANY_INFO.email}`}
                   >
                     <Mail className="h-5 w-5 mr-2" />
                     Email Us
@@ -171,12 +173,25 @@ const Footer = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Newsletter Signup */}
+          <div>
+            <Card className="bg-gray-800 border-gray-700">
+              <CardContent className="p-6">
+                <h3 className="text-white text-lg font-semibold mb-4">Stay Updated</h3>
+                <p className="text-gray-400 mb-4">
+                  Subscribe to our newsletter for the latest updates and insights.
+                </p>
+                <NewsletterForm variant="inline" />
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} DataQuest Solutions. All rights reserved.
+            © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
           </p>
           <div className="mt-4 space-x-4">
             <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">
@@ -184,6 +199,9 @@ const Footer = () => {
             </Link>
             <Link to="/terms" className="text-gray-400 hover:text-white transition-colors">
               Terms of Service
+            </Link>
+            <Link to="/cookie-policy" className="text-gray-400 hover:text-white transition-colors">
+              Cookie Policy
             </Link>
           </div>
         </div>

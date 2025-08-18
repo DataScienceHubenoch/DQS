@@ -1,62 +1,30 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { MessageCircle, Mail, MapPin, Phone, Users } from 'lucide-react';
-import { toast } from 'sonner';
+import ContactForm from '@/components/forms/ContactForm';
+import SEO from '@/components/SEO';
+import { COMPANY_INFO } from '@/lib/constants';
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleContactSupport = () => {
-    const phoneNumber = '254707612395';
+    const phoneNumber = COMPANY_INFO.phone.replace('+', '');
     const message = 'Hello! I would like to get in touch with your team.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const handleJoinCommunity = () => {
-    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const formData = new FormData(e.currentTarget);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const subject = formData.get('subject');
-      const message = formData.get('message');
-
-      const whatsappMessage = `
-*New Contact Form Submission*
-Name: ${name}
-Email: ${email}
-Subject: ${subject}
-
-Message:
-${message}
-      `.trim();
-
-      const phoneNumber = '254707612395';
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-      window.open(whatsappUrl, '_blank');
-      
-      toast.success('Opening WhatsApp...');
-      e.currentTarget.reset();
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Something went wrong. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.open(COMPANY_INFO.whatsappGroup, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with DataQuest Solutions. Contact our expert team for data science services, training, and consulting."
+        url="https://dqs.vercel.app/contact"
+      />
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,68 +45,7 @@ ${message}
               <CardTitle className="text-2xl text-gray-900">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Your name"
-                      className="bg-white/90 backdrop-blur-sm border-sky-200"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="your.email@example.com"
-                      className="bg-white/90 backdrop-blur-sm border-sky-200"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    placeholder="What is this regarding?"
-                    className="bg-white/90 backdrop-blur-sm border-sky-200"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Your message here..."
-                    className="min-h-[150px] bg-white/90 backdrop-blur-sm border-sky-200"
-                    required
-                  />
-                </div>
-                <Button 
-                  type="submit"
-                  className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Opening WhatsApp...' : 'Send via WhatsApp'}
-                </Button>
-              </form>
+              <ContactForm />
             </CardContent>
           </Card>
 
@@ -153,7 +60,7 @@ ${message}
                   <MessageCircle className="w-6 h-6 text-sky-500 mt-1" />
                   <div>
                     <h3 className="text-lg font-medium text-gray-900">WhatsApp</h3>
-                    <p className="text-gray-700">+254 707 612 395</p>
+                    <p className="text-gray-700">{COMPANY_INFO.phone}</p>
                     <Button 
                       variant="outline" 
                       onClick={handleContactSupport}
@@ -167,14 +74,14 @@ ${message}
                   <Mail className="w-6 h-6 text-sky-500 mt-1" />
                   <div>
                     <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                    <p className="text-gray-700">dataquestsolutions2@gmail.com</p>
+                    <p className="text-gray-700">{COMPANY_INFO.email}</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-sky-500 mt-1" />
                   <div>
                     <h3 className="text-lg font-medium text-gray-900">Location</h3>
-                    <p className="text-gray-700">KAKAMEGA, Kenya</p>
+                    <p className="text-gray-700">{COMPANY_INFO.location}</p>
                   </div>
                 </div>
               </CardContent>

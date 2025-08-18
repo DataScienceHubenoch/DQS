@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { Helmet } from 'react-helmet';
+import ErrorFallback from '@/components/ErrorFallback';
+import { AccessibilityProvider } from '@/components/AccessibilityProvider';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Index from '@/pages/Index';
@@ -27,44 +28,50 @@ import CaseStudiesIndex from '@/pages/case-studies/index';
 
 const App = () => {
   return (
-    <ErrorBoundary>
-      <Web3Provider>
-        <Router>
-          <div className="min-h-screen flex flex-col">
-            <Helmet>
-              <title>Data Quest Solutions - Data Science & Analytics Services</title>
-              <meta name="description" content="Expert data science services, training, and consulting to help you make data-driven decisions." />
-            </Helmet>
-            <Navigation />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/courses" element={<Courses />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/consulting" element={<Consulting />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/cookie-policy" element={<CookiePolicy />} />
-                <Route path="/analytics" element={<Analytics />} />
-                <Route path="/resources" element={<Resources />} />
-                <Route path="/case-studies" element={<CaseStudiesIndex />} />
-                <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
-                <Route path="/case-studies/retail" element={<RetailCaseStudy />} />
-                <Route path="/case-studies/financial" element={<FinancialCaseStudy />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
-            </main>
-            <WhatsAppButton />
-            <Footer />
-          </div>
-          <Toaster />
-        </Router>
-      </Web3Provider>
-    </ErrorBoundary>
+    <AccessibilityProvider>
+      <ErrorBoundary>
+        <Web3Provider>
+          <Router>
+            <div className="min-h-screen flex flex-col">
+              {/* Skip to main content link */}
+              <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded z-50"
+              >
+                Skip to main content
+              </a>
+              
+              <Navigation />
+              <main id="main-content" className="flex-grow" role="main">
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/courses" element={<Courses />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/consulting" element={<Consulting />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/cookie-policy" element={<CookiePolicy />} />
+                  <Route path="/analytics" element={<Analytics />} />
+                  <Route path="/resources" element={<Resources />} />
+                  <Route path="/case-studies" element={<CaseStudiesIndex />} />
+                  <Route path="/case-studies/healthcare" element={<HealthcareCaseStudy />} />
+                  <Route path="/case-studies/retail" element={<RetailCaseStudy />} />
+                  <Route path="/case-studies/financial" element={<FinancialCaseStudy />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+              <WhatsAppButton />
+              <Footer />
+            </div>
+            <Toaster />
+          </Router>
+        </Web3Provider>
+      </ErrorBoundary>
+    </AccessibilityProvider>
   );
 };
 

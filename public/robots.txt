@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /config/
+
+# Allow important pages
+Allow: /about
+Allow: /services
+Allow: /courses
+Allow: /contact
+Allow: /blog
+Allow: /resources
+Allow: /case-studies
+
 Sitemap: https://dqs.vercel.app/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

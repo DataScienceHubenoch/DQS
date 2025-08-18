@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { MessageCircle, Users, BookOpen, Download, Video, FileText, CheckCircle2, ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Helmet } from 'react-helmet';
+import SEO from '@/components/SEO';
+import { COMPANY_INFO } from '@/lib/constants';
 
 const featuredTeamMembers = [
   {
@@ -32,14 +33,14 @@ const featuredTeamMembers = [
 
 const Index = () => {
   const handleRequestService = (serviceName: string) => {
-    const phoneNumber = '254707612395';
+    const phoneNumber = COMPANY_INFO.phone.replace('+', '');
     const message = `Hello! I would like to request information about your "${serviceName}" service. Could you please provide more details about the service and pricing?`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   const handleJoinCommunity = () => {
-    window.open('https://chat.whatsapp.com/DKI1ubJLrci6H3yehfEInM', '_blank');
+    window.open(COMPANY_INFO.whatsappGroup, '_blank');
   };
 
   const services = [
@@ -60,21 +61,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-blue-100">
-      <Helmet>
-        <title>DataQuest Solutions - Data Science & Research Services</title>
-        <meta name="description" content="DataQuest Solutions provides comprehensive data science services, including data collection, analysis, AI development, and research writing. Transform your data into actionable insights." />
-        <meta name="keywords" content="data science, data analysis, machine learning, AI development, research writing, data collection, Kenya" />
-        <meta property="og:title" content="DataQuest Solutions - Data Science & Research Services" />
-        <meta property="og:description" content="Transform your data into actionable insights with our comprehensive data science services." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dqs.vercel.app" />
-        <meta property="og:image" content="https://dqs.vercel.app/og-image.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DataQuest Solutions - Data Science & Research Services" />
-        <meta name="twitter:description" content="Transform your data into actionable insights with our comprehensive data science services." />
-        <meta name="twitter:image" content="https://dqs.vercel.app/og-image.jpg" />
-        <link rel="canonical" href="https://dqs.vercel.app" />
-      </Helmet>
+      <SEO
+        title="DataQuest Solutions - Data Science & Research Services"
+        description="DataQuest Solutions provides comprehensive data science services, including data collection, analysis, AI development, and research writing. Transform your data into actionable insights."
+        url="https://dqs.vercel.app"
+        keywords="data science, data analysis, machine learning, AI development, research writing, data collection, Kenya"
+      />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
@@ -98,14 +90,14 @@ const Index = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sky-500">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
-                <span className="text-gray-700">+254701344230</span>
+                <span className="text-gray-700">{COMPANY_INFO.alternatePhone}</span>
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/90 transition-colors shadow-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-sky-500">
                   <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
-                <span className="text-gray-700">dataquestsolutions2@gmail.com</span>
+                <span className="text-gray-700">{COMPANY_INFO.email}</span>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -304,7 +296,7 @@ const Index = () => {
                   <Button 
                     className="w-full bg-sky-500 hover:bg-sky-600 text-white"
                     onClick={() => {
-                      const phoneNumber = '254707612395';
+                      const phoneNumber = COMPANY_INFO.phone.replace('+', '');
                       const message = `Hello! I would like to request the ${resource.title} guide.`;
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                       window.open(whatsappUrl, '_blank');
@@ -402,7 +394,7 @@ const Index = () => {
                   <Button
                     className="w-full bg-sky-500 hover:bg-sky-600 text-white"
                     onClick={() => {
-                      const phoneNumber = '254707612395';
+                      const phoneNumber = COMPANY_INFO.phone.replace('+', '');
                       const message = `Hello! I would like to join the webinar "${webinar.title}" on ${webinar.date} at ${webinar.time}.`;
                       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                       window.open(whatsappUrl, '_blank');
@@ -579,14 +571,14 @@ const Index = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-blue-600">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
             </svg>
-            <span>+254701344230</span>
+            <span>{COMPANY_INFO.alternatePhone}</span>
           </div>
           <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-blue-600">
               <rect width="20" height="16" x="2" y="4" rx="2"></rect>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
-            <span>dataquestsolutions2@gmail.com</span>
+            <span>{COMPANY_INFO.email}</span>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Target, Eye } from 'lucide-react';
+import SEO from '@/components/SEO';
 
 const About = () => {
   const values = [
@@ -26,6 +27,13 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="About Us"
+        description="Learn about DataQuest Solutions' mission, vision, and values. We empower organizations with innovative data science solutions and expert guidance."
+        url="https://dqs.vercel.app/about"
+        keywords="about dataquest solutions, data science company, mission vision values, Kenya data science"
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">

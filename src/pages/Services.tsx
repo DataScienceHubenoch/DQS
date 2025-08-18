@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import PaymentButton from '@/components/PaymentButton';
+import ServiceInquiryForm from '@/components/forms/ServiceInquiryForm';
+import SEO from '@/components/SEO';
+import { COMPANY_INFO, SERVICES } from '@/lib/constants';
 import {
   Database,
   LineChart,
@@ -46,9 +48,10 @@ import { Link } from 'react-router-dom';
 
 const Services = () => {
   const [selectedService, setSelectedService] = React.useState<typeof services[0] | null>(null);
+  const [showInquiryForm, setShowInquiryForm] = React.useState(false);
 
   const handleRequestService = (serviceTitle: string) => {
-    const phoneNumber = '254707612395'; // WhatsApp number without the + symbol
+    const phoneNumber = COMPANY_INFO.phone.replace('+', '');
     const message = `Hello! I would like to request information about your "${serviceTitle}" service. Could you please provide more details about the service and pricing?`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -387,6 +390,13 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO
+        title="Our Services"
+        description="Comprehensive data science services including data collection, analysis, AI development, research writing, and professional training."
+        url="https://dqs.vercel.app/services"
+        keywords="data science services, data analysis, AI development, machine learning, research writing, training, consulting"
+      />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-sky-200 via-sky-300 to-blue-200 text-gray-800 py-20">
@@ -458,7 +468,7 @@ const Services = () => {
                       className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleRequestService(service.title);
+                        setShowInquiryForm(true);
                       }}
                     >
                       Request Service
@@ -576,6 +586,19 @@ const Services = () => {
       </div>
 
       {selectedService && <ServiceModal service={selectedService} />}
+      
+      {/* Service Inquiry Modal */}
+      <Dialog open={showInquiryForm} onOpenChange={setShowInquiryForm}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Request Service Information</DialogTitle>
+            <DialogDescription>
+              Fill out the form below and we'll get back to you with detailed information about our services.
+            </DialogDescription>
+          </DialogHeader>
+          <ServiceInquiryForm onSuccess={() => setShowInquiryForm(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
