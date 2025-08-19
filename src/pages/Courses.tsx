@@ -3,7 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import CourseEnrollmentForm from '@/components/forms/CourseEnrollmentForm';
+import { CourseCard } from '@/components/courses/CourseCard';
+import { useCourses } from '@/hooks/useSupabase';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import SEO from '@/components/SEO';
 import { COMPANY_INFO } from '@/lib/constants';
 import { Search, Filter, Database, Code2, LineChart, FileText, Palette, MessageCircle, Clock, Check, Users, BookOpen, Target, ArrowRight, BarChart, Code, Layers, Brain, Microscope, Calculator, Timer, Star, StarHalf, Calendar, MousePointer } from 'lucide-react';
@@ -20,15 +22,27 @@ const Courses = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedLevel, setSelectedLevel] = React.useState('all');
   const [selectedCategory, setSelectedCategory] = React.useState('all');
-  const [selectedCourse, setSelectedCourse] = React.useState<typeof courses[0] | null>(null);
-  const [showEnrollmentForm, setShowEnrollmentForm] = React.useState(false);
-  const [enrollmentCourse, setEnrollmentCourse] = React.useState<string>('');
+  const { courses, loading, error, refetch } = useCourses();
 
-  const handleEnroll = (courseTitle: string) => {
-    setEnrollmentCourse(courseTitle);
-    setShowEnrollmentForm(true);
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="lg" text="Loading courses..." />
+      </div>
+    );
+  }
 
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Error loading courses</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <Button onClick={refetch}>Try Again</Button>
+        </div>
+      </div>
+    );
+  }
   const handleJoinCommunity = () => {
     window.open(COMPANY_INFO.whatsappGroup, '_blank');
   };
@@ -451,158 +465,13 @@ const Courses = () => {
         'Statistical modeling',
         'Data visualization',
         'Research methods'
-      ],
-      tools: ['R', 'survival package', 'ggplot2'],
-      certification: 'Survival Analysis Professional Certificate'
-    },
-    {
-      title: 'Time Series Analysis with R',
-      level: 'advanced',
-      description: 'Learn time series forecasting, analysis, and modeling using R programming.',
-      icon: Calendar,
-      duration: '8 weeks',
-      prerequisites: ['R programming', 'Statistics', 'Understanding of time series'],
-      topics: [
-        'Time series fundamentals',
-        'Trend and seasonality analysis',
-        'ARIMA modeling',
-        'Exponential smoothing',
-        'Forecasting methods',
-        'Multivariate time series',
-        'Advanced visualization',
-        'Real-world applications'
-      ],
-      skills: [
-        'Time series analysis',
-        'R programming',
-        'Forecasting',
-        'Statistical modeling',
-        'Data visualization'
-      ],
-      tools: ['R', 'forecast package', 'ggplot2'],
-      certification: 'Time Series Analysis Professional Certificate'
-    }
-  ];
-
   const filteredCourses = courses.filter(course => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesLevel = selectedLevel === 'all' || course.level === selectedLevel;
-    const matchesCategory = selectedCategory === 'all' || course.icon.name === selectedCategory;
+    const matchesCategory = selectedCategory === 'all' || course.icon === selectedCategory;
     return matchesSearch && matchesLevel && matchesCategory;
   });
-
-  const CourseModal = ({ course }: { course: typeof courses[0] }) => (
-    <Dialog open={!!selectedCourse} onOpenChange={() => setSelectedCourse(null)}>
-      <DialogContent className="max-w-4xl">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <course.icon className="h-8 w-8 text-sky-500" />
-            {course.title}
-          </DialogTitle>
-          <DialogDescription className="text-gray-600">
-            {course.description}
-          </DialogDescription>
-        </DialogHeader>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-sky-500" />
-              Course Details
-            </h3>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-gray-700">
-                <Clock className="h-5 w-5 text-sky-500" />
-                <span>Duration: {course.duration}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Target className="h-5 w-5 text-sky-500" />
-                <span>Level: {course.level}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Users className="h-5 w-5 text-sky-500" />
-                <span>Prerequisites: {course.prerequisites.join(', ')}</span>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <Target className="h-5 w-5 text-sky-500" />
-              Skills You'll Gain
-            </h3>
-            <div className="grid grid-cols-2 gap-2">
-              {course.skills.map((skill, index) => (
-                <div key={index} className="flex items-center gap-2 text-gray-700 bg-gray-50 p-2 rounded">
-                  <Check className="h-4 w-4 text-sky-500" />
-                  <span>{skill}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-sky-500" />
-            Course Topics
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {course.topics.map((topic, index) => (
-              <div key={index} className="flex items-start gap-2 text-gray-700 bg-gray-50 p-2 rounded">
-                <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>{topic}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-sky-500" />
-            Tools & Certification
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Tools You'll Use</h4>
-              <div className="flex flex-wrap gap-2">
-                {course.tools.map((tool, index) => (
-                  <span key={index} className="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-sm">
-                    {tool}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className="font-medium text-gray-900 mb-2">Certification</h4>
-              <p className="text-gray-700">{course.certification}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-6">
-          <Button
-            variant="outline"
-            onClick={() => setSelectedCourse(null)}
-          >
-            Close
-          </Button>
-          <Button
-            className="bg-sky-500 hover:bg-sky-600 text-white"
-            onClick={() => {
-              const phoneNumber = COMPANY_INFO.phone.replace('+', '');
-              const message = `Hello! I would like to enroll in the "${course.title}" course. Could you please provide more information about the course schedule and pricing?`;
-              const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-              window.open(whatsappUrl, '_blank');
-            }}
-          >
-            Enroll Now
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -711,46 +580,25 @@ const Courses = () => {
         {/* Courses Grid */}
       <section className="py-20 bg-gradient-to-b from-sky-50 via-white to-sky-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCourses.map((course, index) => (
-              <Card 
-                key={index} 
-                className="hover:shadow-lg transition-shadow duration-300 text-center bg-white/90 backdrop-blur-sm border-sky-200 cursor-pointer"
-                onClick={() => setSelectedCourse(course)}
-              >
-              <CardHeader>
-                  <div className="text-4xl mb-4">
-                    <course.icon className="w-12 h-12 text-sky-500 mx-auto" />
-                  </div>
-                  <CardTitle className="text-gray-900">{course.title}</CardTitle>
-                  <div className="flex items-center justify-center gap-2 mt-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      course.level === 'beginner' ? 'bg-green-100 text-green-800' :
-                      course.level === 'intermediate' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
-                    {course.level}
-                    </span>
-                    <span className="text-gray-500 text-sm">
-                    {course.duration}
-                    </span>
-                </div>
-              </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 mb-6">{course.description}</p>
-                  <Button 
-                    className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleEnroll(course.title);
-                    }}
-                  >
-                    Enroll Now
-                  </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredCourses.map((course) => (
+              <CourseCard 
+                key={course.id} 
+                course={course}
+                onEnroll={refetch}
+              />
+            ))}
+          </div>
+          
+          {filteredCourses.length === 0 && (
+            <div className="text-center py-12">
+              <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-medium text-gray-900 mb-2">No courses found</h3>
+              <p className="text-gray-600">
+                Try adjusting your search criteria or browse all available courses.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -772,23 +620,6 @@ const Courses = () => {
         </div>
       </section>
 
-      {selectedCourse && <CourseModal course={selectedCourse} />}
-      
-      {/* Course Enrollment Modal */}
-      <Dialog open={showEnrollmentForm} onOpenChange={setShowEnrollmentForm}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Enroll in Course</DialogTitle>
-            <DialogDescription>
-              Complete the enrollment form below to join our {enrollmentCourse} course.
-            </DialogDescription>
-          </DialogHeader>
-          <CourseEnrollmentForm 
-            defaultCourse={enrollmentCourse}
-            onSuccess={() => setShowEnrollmentForm(false)} 
-          />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

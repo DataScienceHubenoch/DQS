@@ -1,15 +1,28 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { BlogCard } from '@/components/blog/BlogCard';
+import { useBlogPosts } from '@/hooks/useSupabase';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { MessageCircle, Share2, Heart, MessageSquare, ExternalLink } from 'lucide-react';
 
 const Blog = () => {
+  const { posts, loading, error } = useBlogPosts();
+
   const handleContactSupport = () => {
     const phoneNumber = '254707612395';
     const message = 'Hello, I have a question about Data Quest Solutions.';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="lg" text="Loading blog posts..." />
+      </div>
+    );
+  }
 
   const socialPosts = [
     {
@@ -66,6 +79,17 @@ const Blog = () => {
         </div>
 
         {/* Social Media Posts Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {posts.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        {/* Social Media Posts */}
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Social Media Updates</h2>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {socialPosts.map((post, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300 bg-white/90 backdrop-blur-sm border-sky-200">

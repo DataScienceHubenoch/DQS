@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
+import { AuthButton } from './auth/AuthButton';
 import Web3Wallet from './Web3Wallet';
 import MobileMenu from './MobileMenu';
 import NetworkStatus from './NetworkStatus';
 import SearchComponent from './SearchComponent';
+import { NotificationSystem } from './realtime/NotificationSystem';
 import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail, ClipboardList } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
@@ -127,6 +129,12 @@ const Navigation = () => {
             <div className="ml-2">
               <Web3Wallet />
             </div>
+            <div className="ml-2">
+              <AuthButton />
+            </div>
+            <div className="ml-2">
+              <NotificationSystem />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -169,6 +177,9 @@ const Navigation = () => {
             ))}
             <div className="px-3 py-2">
               <Web3Wallet />
+            </div>
+            <div className="px-3 py-2">
+              <AuthButton />
             </div>
           </div>
         </div>

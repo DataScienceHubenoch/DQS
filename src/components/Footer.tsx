@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { MessageCircle, Mail, MapPin, Phone, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
-import NewsletterForm from '@/components/forms/NewsletterForm';
+import EnhancedNewsletterForm from '@/components/forms/EnhancedNewsletterForm';
 import { COMPANY_INFO } from '@/lib/constants';
 
 const Footer = () => {
@@ -182,7 +182,7 @@ const Footer = () => {
                 <p className="text-gray-400 mb-4">
                   Subscribe to our newsletter for the latest updates and insights.
                 </p>
-                <NewsletterForm variant="inline" />
+                <EnhancedNewsletterForm variant="inline" />
               </CardContent>
             </Card>
           </div>

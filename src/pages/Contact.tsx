@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageCircle, Mail, MapPin, Phone, Users } from 'lucide-react';
-import ContactForm from '@/components/forms/ContactForm';
+import EnhancedContactForm from '@/components/forms/EnhancedContactForm';
 import SEO from '@/components/SEO';
 import { COMPANY_INFO } from '@/lib/constants';
 
@@ -45,7 +45,7 @@ const Contact = () => {
               <CardTitle className="text-2xl text-gray-900">Send us a Message</CardTitle>
             </CardHeader>
             <CardContent>
-              <ContactForm />
+              <EnhancedContactForm />
             </CardContent>
           </Card>
 
