@@ -61,12 +61,17 @@ src/
 ## Features
 
 - **Authentication**: Secure user registration and login
+- **Registration System**: Professional web-based registration for courses and services
+- **Admin Portal**: Comprehensive admin dashboard for managing registrations and courses
 - **User Dashboard**: Personal learning dashboard
 - **Course Management**: Dynamic course enrollment and tracking
 - **Real-time Updates**: Live notifications and updates
 - **Blog System**: Dynamic blog with author management
 - **Form Submissions**: Database-backed contact and inquiry forms
 - **User Profiles**: Comprehensive user profile management
+- **Email Notifications**: Automated confirmation and approval emails
+- **Analytics Dashboard**: Registration trends and performance metrics
+- **Bulk Communications**: Admin tools for sending bulk emails
 - Web3 wallet integration
 - Responsive design
 - Modern UI components
@@ -79,6 +84,8 @@ The application uses the following main tables:
 - `profiles` - User profile information
 - `courses` - Available courses
 - `enrollments` - Course enrollments and progress
+- `registrations` - New registration system for courses and services
+- `email_notifications` - Email tracking and history
 - `blog_posts` - Blog content
 - `contact_submissions` - Contact form submissions
 - `service_inquiries` - Service inquiry submissions

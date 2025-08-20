@@ -468,7 +468,7 @@ const Services = () => {
                       className="w-full bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setShowInquiryForm(true);
+                        window.location.href = '/register';
                       }}
                     >
                       Request Service
@@ -575,7 +575,7 @@ const Services = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white border-sky-500" asChild>
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/register">Register Now</Link>
             </Button>
               <Button size="lg" variant="outline" className="text-gray-700 border-gray-300 hover:bg-gray-50 hover:text-sky-600" asChild>
                 <Link to="/about">Learn More</Link>

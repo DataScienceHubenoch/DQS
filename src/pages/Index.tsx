@@ -104,11 +104,13 @@ const Index = () => {
               <Button 
                 size="lg" 
                 variant="secondary"
-                onClick={() => handleRequestService('General Inquiry')}
                 className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white border-sky-500"
+                asChild
               >
-                <MessageCircle className="h-5 w-5" />
-                Get Started
+                <Link to="/register">
+                  <MessageCircle className="h-5 w-5" />
+                  Register Now
+                </Link>
               </Button>
               <Button 
                 size="lg" 

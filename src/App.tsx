@@ -29,6 +29,8 @@ import CaseStudiesIndex from '@/pages/case-studies/index';
 import Dashboard from '@/pages/Dashboard';
 import Profile from '@/pages/Profile';
 import MyCourses from '@/pages/MyCourses';
+import Register from '@/pages/Register';
+import AdminDashboard from '@/pages/admin/AdminDashboard';
 
 const App = () => {
   return (
@@ -69,6 +71,8 @@ const App = () => {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/my-courses" element={<MyCourses />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/admin" element={<AdminDashboard />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
                 </main>

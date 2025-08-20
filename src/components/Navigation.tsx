@@ -8,6 +8,7 @@ import NetworkStatus from './NetworkStatus';
 import SearchComponent from './SearchComponent';
 import { NotificationSystem } from './realtime/NotificationSystem';
 import { Home, Users, Briefcase, BookOpen, FileText, MessageSquare, Phone, Menu, Settings, Lightbulb, BarChart, Mail, ClipboardList } from 'lucide-react';
+import { UserPlus } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -81,6 +82,12 @@ const Navigation = () => {
       icon: Mail,
       label: 'Contact',
       description: 'Get in touch with our team'
+    },
+    {
+      path: '/register',
+      icon: UserPlus,
+      label: 'Register',
+      description: 'Register for courses and services'
     }
   ];
 
